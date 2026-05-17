@@ -1,5 +1,7 @@
 # extension-tracker
 
+[English](../README.md) | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md)
+
 拡張機能向けの毎日の公開マーケットプレイス分析トラッカー。
 
 `extension-tracker` は、公開されている拡張機能マーケットプレイスの統計を収集し、製品/プラットフォームごとに 1 つの JSONL 履歴を保存し、製品/プラットフォームごとに 1 つの SVG トレンドチャートを生成します。このリポジトリはフォークされるように設計されています。`config/extensions.json` を変更し、GitHub Actions を有効にすると、スケジュールされたコレクターが独自の公開分析履歴を自動的に構築します。

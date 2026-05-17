@@ -1,5 +1,7 @@
 # extension-tracker
 
+[English](README.md) | [繁體中文](docs/README.zh-TW.md) | [简体中文](docs/README.zh-CN.md) | [日本語](docs/README.ja.md)
+
 Daily public marketplace analytics for extensions.
 
 `extension-tracker` collects public extension marketplace stats, stores one JSONL series per product/platform, and generates one SVG trend chart per product/platform. The repo is designed to be forked: change `config/extensions.json`, enable GitHub Actions, and let scheduled collectors build your own public analytics history.

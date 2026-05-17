@@ -1,5 +1,7 @@
 # extension-tracker
 
+[English](../README.md) | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md)
+
 擴充套件的每日公開市場分析數據追蹤器。
 
 `extension-tracker` 會收集公開的擴充套件市場數據，為每個產品/平台儲存一份 JSONL 歷史紀錄，並產生對應的 SVG 趨勢圖表。此儲存庫設計為可供 Fork 使用：只需修改 `config/extensions.json`、啟用 GitHub Actions，即可讓排程任務自動建立您專屬的公開分析歷史數據。
