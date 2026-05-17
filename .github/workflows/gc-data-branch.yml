@@ -1,0 +1,36 @@
+name: Monthly Data Branch GC
+
+on:
+  schedule:
+    # Run on the 1st of every month at 02:00 UTC
+    - cron: "0 2 1 * *"
+  workflow_dispatch:
+    inputs:
+      keep_days:
+        description: "Number of recent daily commits to keep (default: 180)"
+        required: false
+        default: "180"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: extension-tracker-gc
+  cancel-in-progress: false
+
+jobs:
+  gc:
+    name: Squash old data branch commits
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data
+          # Full history required for squash/rebase
+          fetch-depth: 0
+
+      - name: Run GC script
+        env:
+          GC_KEEP_DAYS: ${{ inputs.keep_days || '180' }}
+        run: bash scripts/gc-data-branch.sh

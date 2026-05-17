@@ -1,0 +1,85 @@
+name: Collect Open VSX Registry Analytics
+
+on:
+  schedule:
+    - cron: "10 1 * * *" # UTC 01:10 = Asia/Taipei 09:10
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: extension-tracker-analytics
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    name: "Collect shard ${{ matrix.shard }} / ${{ strategy.job-total }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Shallow clone: only the source tree is needed for the build.
+          # Collected data is uploaded as a GitHub Actions artifact and committed
+          # by the merge job below — no git history is required here.
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Collect Open VSX Registry analytics (shard ${{ matrix.shard }}/5)
+        run: npm run collect -- openvsx --shard=${{ matrix.shard }}/5
+
+      - name: Upload shard output
+        uses: actions/upload-artifact@v4
+        with:
+          name: openvsx-shard-${{ matrix.shard }}
+          path: output/
+          retention-days: 1
+
+  commit:
+    name: Merge shards and commit
+    runs-on: ubuntu-latest
+    needs: collect
+
+    steps:
+      # Check out the data orphan branch (shallow: only HEAD needed for appending).
+      # This branch holds only output/data/ JSONL files and shares no history
+      # with main, which keeps the source repository lean.
+      - uses: actions/checkout@v4
+        with:
+          ref: data
+          fetch-depth: 1
+
+      - name: Download all shard outputs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: openvsx-shard-*
+          path: output/
+          merge-multiple: true
+
+      - name: Commit Open VSX Registry data to data branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add output/data
+          git diff --staged --quiet || git commit -m "data: open vsx registry snapshot $(date -u +%Y-%m-%d)"
+          git pull --rebase origin data
+          git push
+
+      - name: Deploy charts to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output/charts
+          keep_files: true

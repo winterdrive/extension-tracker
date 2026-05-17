@@ -34,17 +34,25 @@ function renderPlatformChart(extensionId: string, platform: Platform, snapshots:
   const series = buildSeries(platform, points);
   const title = platform === "marketplace" ? "VS Code Marketplace History" : "Open VSX History";
   const yLabel = platform === "marketplace" ? "Marketplace count" : "Open VSX downloads";
-  const dates = Array.from(new Set(points.map((point) => point.snapshot_date)));
+  
+  const dates = points.length > 0 
+    ? generateDateRange(points[0].snapshot_date, points.at(-1)!.snapshot_date)
+    : [];
+
   const allValues = series.flatMap((item) => item.values.map((point) => point.value));
   const maxValue = niceMax(Math.max(1, ...allValues));
   const minValue = Math.min(0, ...allValues);
   const yRange = Math.max(1, maxValue - minValue);
 
+  // Pre-build an O(1) index map so xFor lookups are O(1) rather than O(n).
+  // Without this, lttb + renderSeries both call xFor per data point, making
+  // chart rendering O(n²) as the time-series grows toward 1000 days.
+  const dateIndex = new Map(dates.map((d, i) => [d, i]));
   const xFor = (date: string): number => {
     if (dates.length <= 1) {
       return PLOT.x + PLOT.width / 2;
     }
-    const index = Math.max(0, dates.indexOf(date));
+    const index = dateIndex.get(date) ?? 0;
     return PLOT.x + (index / (dates.length - 1)) * PLOT.width;
   };
 
@@ -93,8 +101,11 @@ function renderSeries(series: Series, xFor: (date: string) => number, yFor: (val
       `<text x="${(x + 12).toFixed(1)}" y="${(y - 10).toFixed(1)}" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="${series.color}">${formatNumber(point.value)}</text>`;
   }
 
-  const d = series.values.map((point, index) => `${index === 0 ? "M" : "L"}${xFor(point.date).toFixed(1)},${yFor(point.value).toFixed(1)}`).join(" ");
-  const markers = series.values.map((point) => `<circle cx="${xFor(point.date).toFixed(1)}" cy="${yFor(point.value).toFixed(1)}" r="3.2" fill="${series.color}"/>`).join("\n  ");
+  const pointsToRender = series.values.length > 180 ? lttb(series.values, 180, xFor) : series.values;
+  const d = pointsToRender.map((point, index) => `${index === 0 ? "M" : "L"}${xFor(point.date).toFixed(1)},${yFor(point.value).toFixed(1)}`).join(" ");
+  const markers = series.values.length <= 30
+    ? series.values.map((point) => `<circle cx="${xFor(point.date).toFixed(1)}" cy="${yFor(point.value).toFixed(1)}" r="3.2" fill="${series.color}"/>`).join("\n  ")
+    : "";
   const last = series.values.at(-1);
   const lastLabel = last
     ? `<text x="${Math.min(xFor(last.date) + 10, PLOT.x + PLOT.width - 80).toFixed(1)}" y="${(yFor(last.value) - 10).toFixed(1)}" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="${series.color}">${formatNumber(last.value)}</text>`
@@ -204,4 +215,83 @@ function escapeXml(value: string): string {
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
+}
+
+function lttb(data: Array<{ date: string; value: number }>, threshold: number, xFor: (date: string) => number): Array<{ date: string; value: number }> {
+  const dataLength = data.length;
+  if (threshold >= dataLength || threshold === 0) {
+    return data;
+  }
+
+  const sampled: Array<{ date: string; value: number }> = [];
+  let sampledIndex = 0;
+
+  const every = (dataLength - 2) / (threshold - 2);
+  let a = 0;
+  let maxAreaPoint: { date: string; value: number } | undefined;
+  let maxArea: number;
+  let area: number;
+  let nextA: number | undefined;
+
+  sampled[sampledIndex++] = data[a];
+
+  for (let i = 0; i < threshold - 2; i++) {
+    let avgX = 0;
+    let avgY = 0;
+    let avgRangeStart = Math.floor((i + 1) * every) + 1;
+    let avgRangeEnd = Math.floor((i + 2) * every) + 1;
+    avgRangeEnd = avgRangeEnd < dataLength ? avgRangeEnd : dataLength;
+
+    const avgRangeLength = avgRangeEnd - avgRangeStart;
+    for (; avgRangeStart < avgRangeEnd; avgRangeStart++) {
+      avgX += xFor(data[avgRangeStart].date);
+      avgY += data[avgRangeStart].value;
+    }
+    avgX /= avgRangeLength;
+    avgY /= avgRangeLength;
+
+    let rangeOffs = Math.floor((i + 0) * every) + 1;
+    const rangeTo = Math.floor((i + 1) * every) + 1;
+
+    const pointAx = xFor(data[a].date);
+    const pointAy = data[a].value;
+
+    maxArea = -1;
+    area = -1;
+
+    for (; rangeOffs < rangeTo; rangeOffs++) {
+      area = Math.abs(
+        (pointAx - avgX) * (data[rangeOffs].value - pointAy) -
+        (pointAx - xFor(data[rangeOffs].date)) * (avgY - pointAy)
+      ) * 0.5;
+      if (area > maxArea) {
+        maxArea = area;
+        maxAreaPoint = data[rangeOffs];
+        nextA = rangeOffs;
+      }
+    }
+
+    if (maxAreaPoint) {
+      sampled[sampledIndex++] = maxAreaPoint;
+    }
+    if (nextA !== undefined) {
+      a = nextA;
+    }
+  }
+
+  sampled[sampledIndex++] = data[dataLength - 1];
+
+  return sampled;
+}
+
+function generateDateRange(startDate: string, endDate: string): string[] {
+  const dates: string[] = [];
+  const current = new Date(`${startDate}T00:00:00.000Z`);
+  const end = new Date(`${endDate}T00:00:00.000Z`);
+
+  while (current <= end) {
+    dates.push(current.toISOString().slice(0, 10));
+    current.setUTCDate(current.getUTCDate() + 1);
+  }
+  return dates;
 }

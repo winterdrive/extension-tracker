@@ -125,13 +125,21 @@ Provider workflows are named by data source so future sources remain distinguish
 
 If a future tracker adds Chrome Web Store, it should use a separate provider-specific workflow such as `collect-chrome-web-store.yml`.
 
-## Scaling Notes
+## Scaling & Architecture
 
-For larger configs, use sharding:
+For larger configs (e.g., 1000 extensions tracked over 1000 days), this repository implements several robust scaling mechanisms:
+
+1. **API Rate Limiting**: Enforces a strict per-host Token Bucket rate limit (default 2 RPS) with exponential backoff and jitter to prevent `429 Too Many Requests` bans.
+2. **Matrix Sharding**: The GitHub Actions workflows distribute data collection across parallel matrix jobs (e.g., 5 shards) for faster execution.
+3. **Artifact Aggregation**: Parallel matrix jobs upload their isolated `output/` directories as artifacts. A dedicated `commit` job then downloads all artifacts and pushes them in a single commit, eliminating Git push race conditions.
+4. **Data Orphan Branch**: To prevent the Git repository from ballooning over time, the JSONL historical data is committed to a completely separate `data` orphan branch rather than `main`.
+5. **History GC**: A monthly maintenance workflow (`gc-data-branch.yml`) automatically squashes `data` branch commits older than 180 days to keep the repository extremely lightweight.
+
+You can also run sharding locally:
 
 ```bash
 npm run collect -- marketplace --shard 0/10
 npm run collect -- marketplace --shard 1/10
 ```
 
-The collector also limits API concurrency with `--concurrency`, defaulting to `5`, so a large config does not fire every request at once.
+The collector limits API concurrency with `--concurrency`, defaulting to `5`, so a large config does not fire every request at once.
