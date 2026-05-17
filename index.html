@@ -554,6 +554,16 @@
         }
 
         // ── Render card ──────────────────────────────────────────────────
+
+        /**
+         * Escape a JS value for safe embedding inside an HTML attribute.
+         * JSON.stringify produces a double-quoted string; those inner quotes
+         * must become &quot; so the HTML parser doesn't end the attribute early.
+         */
+        function escAttr(value) {
+            return JSON.stringify(value).replace(/"/g, "&quot;");
+        }
+
         function renderCard(ext, index) {
             const card = document.createElement("div");
             card.className = "card";
@@ -595,13 +605,13 @@
                             />
                         </div>
                         <div class="copy-toolbar">
-                            <button class="copy-btn" onclick="copyToClipboard(${JSON.stringify(s.markdown)}, this)">
+                            <button class="copy-btn" onclick="copyToClipboard(${escAttr(s.markdown)}, this)">
                                 ${iconCopy} Copy Markdown
                             </button>
-                            <button class="copy-btn" onclick="copyToClipboard(${JSON.stringify(s.url)}, this)">
+                            <button class="copy-btn" onclick="copyToClipboard(${escAttr(s.url)}, this)">
                                 ${iconLink} Copy URL
                             </button>
-                            <button class="copy-btn" onclick="copyToClipboard(${JSON.stringify(s.html)}, this)">
+                            <button class="copy-btn" onclick="copyToClipboard(${escAttr(s.html)}, this)">
                                 ${iconCopy} Copy HTML
                             </button>
                         </div>
