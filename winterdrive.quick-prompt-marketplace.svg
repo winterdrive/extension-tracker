@@ -13,6 +13,6 @@
   <circle cx="491.0" cy="121.8" r="6" fill="#ef3b20"/><text x="503.0" y="111.8" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#ef3b20">542</text>
   <text x="491.0" y="484" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">May 17</text>
   <text x="491" y="532" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#111827">Date</text>
-  <text transform="translate(28 271) rotate(-90)" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#111827">Marketplace count</text>
+  <text transform="translate(28 271) rotate(-90)" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#111827">Installs / Downloads</text>
   
 </svg>
