@@ -1,20 +1,29 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extension Tracker Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Extension Tracker — Embed Charts</title>
+    <meta name="description" content="Embed live SVG marketplace analytics charts for your extensions into any README or website.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-            --accent-hover: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            --bg: #0d1117;
+            --surface: rgba(22, 27, 34, 0.9);
+            --surface-hover: rgba(33, 38, 45, 0.95);
+            --border: rgba(48, 54, 61, 0.9);
+            --border-glow: rgba(88, 166, 255, 0.4);
+            --text: #e6edf3;
+            --text-muted: #7d8590;
+            --accent: #58a6ff;
+            --accent-2: #bc8cff;
+            --success: #3fb950;
+            --tag-bg: rgba(56, 139, 253, 0.1);
+            --tag-border: rgba(56, 139, 253, 0.4);
+            --copy-bg: rgba(63, 185, 80, 0.1);
+            --copy-border: rgba(63, 185, 80, 0.4);
         }
 
         * {
@@ -25,177 +34,368 @@
 
         body {
             font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-color);
-            background-image:
-                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
-            background-attachment: fixed;
-            color: var(--text-main);
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
-            padding: 2rem;
-            line-height: 1.5;
+            background-image:
+                radial-gradient(ellipse at 20% 0%, rgba(88, 166, 255, 0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 100%, rgba(188, 140, 255, 0.07) 0%, transparent 60%);
         }
 
+        /* ── Header ── */
         header {
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .github-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .github-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--tag-bg);
+        }
+
+        /* ── Hero ── */
+        .hero {
             text-align: center;
-            margin-bottom: 4rem;
-            padding-top: 2rem;
-            animation: fadeInDown 0.8s ease-out;
+            padding: 5rem 2rem 3rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--tag-bg);
+            border: 1px solid var(--tag-border);
+            border-radius: 100px;
+            padding: 0.3rem 0.9rem;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
         }
 
         h1 {
             font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: var(--accent-gradient);
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text) 40%, var(--accent-2));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
         }
 
-        p.subtitle {
+        .hero-sub {
             font-size: 1.1rem;
             color: var(--text-muted);
             font-weight: 300;
+            margin-bottom: 2rem;
         }
 
+        /* ── How to use bar ── */
+        .howto {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(22, 27, 34, 0.5);
+            margin-bottom: 3rem;
+        }
+
+        .howto-step {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .step-num {
+            width: 22px;
+            height: 22px;
+            background: var(--tag-bg);
+            border: 1px solid var(--tag-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* ── Grid ── */
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        #loading {
+            text-align: center;
+            padding: 5rem;
+            color: var(--text-muted);
+            font-size: 1rem;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
-            animation: fadeIn 0.8s ease-out backwards;
-            display: flex;
-            flex-direction: column;
+            grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
             gap: 1.5rem;
         }
 
+        /* ── Card ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            animation: fadeIn 0.5s ease backwards;
+        }
+
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
+            border-color: rgba(88, 166, 255, 0.3);
+            box-shadow: 0 0 0 1px rgba(88, 166, 255, 0.1), 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .card-header {
+        .card-head {
+            padding: 1.25rem 1.5rem;
             display: flex;
-            justify-content: space-between;
             align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border);
         }
 
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            word-break: break-all;
+        .card-info {}
+
+        .card-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
         }
 
-        .card-subtitle {
-            font-size: 0.9rem;
+        .card-key {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
             color: var(--text-muted);
-            margin-top: 0.25rem;
+            margin-top: 0.2rem;
         }
 
-        .repo-link {
-            color: var(--text-main);
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 0.4rem 0.8rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
+        .card-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .pill-link {
+            font-size: 0.78rem;
             font-weight: 600;
+            padding: 0.3rem 0.65rem;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            text-decoration: none;
             transition: all 0.2s;
         }
 
-        .repo-link:hover {
-            background: var(--accent-gradient);
-            color: white;
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+        .pill-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--tag-bg);
         }
 
-        .charts {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        /* ── Platform section ── */
+        .platform-section {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border);
         }
 
-        .chart-container {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            padding: 1rem;
-            overflow: hidden;
+        .platform-section:last-child {
+            border-bottom: none;
+        }
+
+        .platform-label {
             display: flex;
-            justify-content: center;
             align-items: center;
-            min-height: 120px;
-            position: relative;
+            justify-content: space-between;
+            margin-bottom: 1rem;
         }
 
-        .chart-container::before {
-            content: 'Loading chart...';
-            position: absolute;
+        .platform-name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
             color: var(--text-muted);
-            font-size: 0.9rem;
-            z-index: 0;
-            animation: pulse 1.5s infinite;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
-        .chart-img {
-            max-width: 100%;
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--success);
+            display: inline-block;
+        }
+
+        .status-dot.pending {
+            background: var(--text-muted);
+        }
+
+        /* ── Chart preview ── */
+        .chart-preview {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .chart-preview img {
+            width: 100%;
             height: auto;
             display: block;
-            position: relative;
-            z-index: 1;
-            background: transparent;
-            transition: opacity 0.3s;
         }
 
-        .chart-img.error {
-            opacity: 0;
-        }
-
-        .chart-container.error::before {
-            content: 'No data collected yet';
-            animation: none;
-            color: #ef4444;
-        }
-
-        .loading-state {
+        .chart-placeholder {
+            padding: 2rem;
             text-align: center;
-            padding: 4rem;
             color: var(--text-muted);
-            font-size: 1.2rem;
-            animation: pulse 1.5s infinite;
+            font-size: 0.85rem;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
+        /* ── Copy toolbar ── */
+        .copy-toolbar {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .copy-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background: var(--tag-bg);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .copy-btn.copied {
+            background: var(--copy-bg);
+            border-color: var(--copy-border);
+            color: var(--success);
+        }
+
+        .copy-btn svg {
+            width: 13px;
+            height: 13px;
+            flex-shrink: 0;
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(12px);
             }
 
             to {
@@ -204,126 +404,244 @@
             }
         }
 
-        @keyframes pulse {
-            0% {
-                opacity: 0.5;
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0.5;
-            }
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             .grid {
                 grid-template-columns: 1fr;
             }
 
             h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
 
-            body {
+            header {
                 padding: 1rem;
             }
 
-            .card {
-                padding: 1.5rem;
+            .container {
+                padding: 0 1rem 3rem;
             }
         }
     </style>
 </head>
 
 <body>
+
     <header>
-        <h1>Analytics Dashboard</h1>
-        <p class="subtitle" id="repo-info">Loading repository data...</p>
+        <a class="logo" href="#">
+            <div class="logo-icon">📊</div>
+            <span class="logo-text">Extension<span>Tracker</span></span>
+        </a>
+        <div class="header-right">
+            <a id="repo-link" href="#" target="_blank" rel="noopener noreferrer" class="github-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+                View on GitHub
+            </a>
+        </div>
     </header>
 
-    <div class="container">
-        <div id="loading" class="loading-state">
-            Fetching tracked extensions config...
+    <div class="hero">
+        <div class="hero-badge">
+            <span>✨</span> Auto-updated daily via GitHub Actions
         </div>
-        <div id="grid" class="grid">
-            <!-- Cards will be injected here -->
+        <h1>Embed Live Extension Charts</h1>
+        <p class="hero-sub">Pick any chart below and copy the Markdown, URL, or HTML snippet to embed it anywhere — README, docs, or your website.</p>
+    </div>
+
+    <div class="howto">
+        <div class="howto-step">
+            <span class="step-num">1</span>
+            Find your extension's chart below
+        </div>
+        <div class="howto-step">
+            <span class="step-num">2</span>
+            Choose a platform (Marketplace / Open VSX)
+        </div>
+        <div class="howto-step">
+            <span class="step-num">3</span>
+            Click a copy button to get your embed snippet
         </div>
     </div>
 
+    <div class="container">
+        <div id="loading">⏳ Fetching tracked extensions…</div>
+        <div id="grid" class="grid"></div>
+    </div>
+
+    <footer id="footer" style="display:none;">
+        Charts auto-updated daily by <a id="footer-link" href="#" target="_blank">GitHub Actions</a>.
+        Fork <a id="fork-link" href="#" target="_blank">this repository</a> to track your own extensions.
+    </footer>
+
     <script>
-        // Auto-detect GitHub Pages environment for any fork
+        // ── Auto-detect repo from GitHub Pages URL ──────────────────────
         let username = "Pain-Labs";
         let repo = "extension-tracker";
 
-        if (window.location.hostname.includes('github.io')) {
-            username = window.location.hostname.split('.')[0];
-            const pathParts = window.location.pathname.split('/').filter(p => p);
-            if (pathParts.length > 0) {
-                repo = pathParts[0];
-            }
+        if (window.location.hostname.endsWith("github.io")) {
+            username = window.location.hostname.split(".")[0];
+            const parts = window.location.pathname.split("/").filter(Boolean);
+            if (parts.length > 0) repo = parts[0];
         }
 
-        document.getElementById('repo-info').textContent = `Tracking statistics for ${username}/${repo}`;
+        const pagesBase = `https://${username}.github.io/${repo}`;
+        const rawBase = `https://raw.githubusercontent.com/${username}/${repo}/main`;
+        const repoUrl = `https://github.com/${username}/${repo}`;
 
-        // Fetch config from the main branch
-        const configUrl = `https://raw.githubusercontent.com/${username}/${repo}/main/config/extensions.json`;
+        document.getElementById("repo-link").href = repoUrl;
+        document.getElementById("footer-link").href = `${repoUrl}/actions`;
+        document.getElementById("fork-link").href = repoUrl;
 
+        // ── Platform config ─────────────────────────────────────────────
+        const PLATFORMS = [
+            { id: "marketplace", label: "VS Code Marketplace" },
+            { id: "openvsx", label: "Open VSX Registry" },
+            { id: "chrome", label: "Chrome Web Store" },
+            { id: "firefox", label: "Mozilla Add-ons" },
+            { id: "edge", label: "Microsoft Edge Add-ons" },
+            { id: "jetbrains", label: "JetBrains Marketplace" },
+            { id: "raycast", label: "Raycast Store" },
+            { id: "npm", label: "npm Registry" },
+            { id: "docker", label: "Docker Hub" },
+            { id: "github", label: "GitHub Releases" },
+        ];
+
+        function getPlatformFromUrl(rawUrl) {
+            try {
+                const url = new URL(rawUrl);
+                const host = url.hostname.toLowerCase();
+                if (host === "marketplace.visualstudio.com") return "marketplace";
+                if (host === "open-vsx.org") return "openvsx";
+                if (host === "chromewebstore.google.com") return "chrome";
+                if (host === "addons.mozilla.org") return "firefox";
+                if (host === "microsoftedge.microsoft.com") return "edge";
+                if (host === "plugins.jetbrains.com") return "jetbrains";
+                if (host.includes("raycast.com")) return "raycast";
+                if (host.includes("npmjs.com")) return "npm";
+                if (host.includes("hub.docker.com")) return "docker";
+                if (host === "github.com") return "github";
+            } catch (e) {
+                console.error("Invalid URL in config:", rawUrl, e);
+            }
+            return null;
+        }
+
+        // ── SVG icons ───────────────────────────────────────────────────
+        const iconCopy = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+        const iconCheck = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+        const iconLink = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`;
+
+        // ── Copy helper ─────────────────────────────────────────────────
+        function copyToClipboard(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const original = btn.innerHTML;
+                btn.innerHTML = `${iconCheck} Copied!`;
+                btn.classList.add("copied");
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.classList.remove("copied");
+                }, 2000);
+            });
+        }
+
+        // ── Build embed snippets ─────────────────────────────────────────
+        function snippets(key, platformId, altText) {
+            const svgUrl = `${pagesBase}/${key}-${platformId}.svg`;
+            return {
+                url: svgUrl,
+                markdown: `![${altText}](${svgUrl})`,
+                html: `<img src="${svgUrl}" alt="${altText}" />`,
+            };
+        }
+
+        // ── Render card ──────────────────────────────────────────────────
+        function renderCard(ext, index) {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.style.animationDelay = `${index * 0.07}s`;
+
+            const displayName = ext.displayName || ext.key;
+            let linksHtml = "";
+            if (ext.repository) {
+                linksHtml += `<a href="${ext.repository}" target="_blank" rel="noopener noreferrer" class="pill-link">GitHub</a>`;
+            }
+
+            // Dynamically identify platforms specified for this extension
+            const trackedPlatformIds = (ext.urls || []).map(getPlatformFromUrl).filter(Boolean);
+            const activePlatforms = PLATFORMS.filter(p => trackedPlatformIds.includes(p.id));
+
+            let platformsHtml = "";
+            for (const platform of activePlatforms) {
+                const altText = `${displayName} ${platform.label} trend`;
+                const s = snippets(ext.key, platform.id, altText);
+                const imgId = `img-${ext.key}-${platform.id}`.replace(/[^a-z0-9-]/gi, "_");
+
+                platformsHtml += `
+                    <div class="platform-section">
+                        <div class="platform-label">
+                            <span class="platform-name">
+                                <span class="status-dot pending" id="dot-${imgId}"></span>
+                                ${platform.label}
+                            </span>
+                        </div>
+                        <div class="chart-preview" id="preview-${imgId}">
+                            <img
+                                id="${imgId}"
+                                src="${s.url}"
+                                alt="${altText}"
+                                onload="document.getElementById('dot-${imgId}').classList.remove('pending'); document.getElementById('preview-${imgId}').style.minHeight='auto';"
+                                onerror="
+                                    document.getElementById('preview-${imgId}').innerHTML='<div class=\\'chart-placeholder\\'>No data collected yet for this platform.</div>';
+                                "
+                            />
+                        </div>
+                        <div class="copy-toolbar">
+                            <button class="copy-btn" onclick="copyToClipboard(${JSON.stringify(s.markdown)}, this)">
+                                ${iconCopy} Copy Markdown
+                            </button>
+                            <button class="copy-btn" onclick="copyToClipboard(${JSON.stringify(s.url)}, this)">
+                                ${iconLink} Copy URL
+                            </button>
+                            <button class="copy-btn" onclick="copyToClipboard(${JSON.stringify(s.html)}, this)">
+                                ${iconCopy} Copy HTML
+                            </button>
+                        </div>
+                    </div>`;
+            }
+
+            card.innerHTML = `
+                <div class="card-head">
+                    <div class="card-info">
+                        <div class="card-name">${displayName}</div>
+                        <div class="card-key">${ext.key}</div>
+                    </div>
+                    <div class="card-links">${linksHtml}</div>
+                </div>
+                ${platformsHtml}
+            `;
+            return card;
+        }
+
+        // ── Load ─────────────────────────────────────────────────────────
         async function loadDashboard() {
             try {
-                const response = await fetch(configUrl);
-                if (!response.ok) throw new Error('Failed to fetch config');
+                const res = await fetch(`${rawBase}/config/extensions.json`);
+                if (!res.ok) throw new Error("Failed to fetch config");
+                const extensions = await res.json();
 
-                const extensions = await response.json();
-                const grid = document.getElementById('grid');
-                document.getElementById('loading').style.display = 'none';
-
-                extensions.forEach((ext, index) => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.style.animationDelay = `${index * 0.1}s`;
-
-                    let repoHtml = '';
-                    if (ext.repository) {
-                        repoHtml = `<a href="${ext.repository}" target="_blank" rel="noopener noreferrer" class="repo-link">GitHub</a>`;
-                    }
-
-                    // Dynamically generate image tags for each potential platform
-                    const platforms = ['marketplace', 'openvsx'];
-                    const chartsHtml = platforms.map(platform => `
-                        <div class="chart-container">
-                            <img src="${ext.key}-${platform}.svg" 
-                                 class="chart-img" 
-                                 alt="${ext.displayName || ext.key} ${platform} trend"
-                                 onload="this.parentElement.style.setProperty('--bg', 'transparent')"
-                                 onerror="this.parentElement.classList.add('error'); this.classList.add('error');">
-                        </div>
-                    `).join('');
-
-                    card.innerHTML = `
-                        <div class="card-header">
-                            <div>
-                                <h2 class="card-title">${ext.displayName || ext.key}</h2>
-                                <p class="card-subtitle">${ext.key}</p>
-                            </div>
-                            ${repoHtml}
-                        </div>
-                        <div class="charts">
-                            ${chartsHtml}
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-            } catch (error) {
-                document.getElementById('loading').textContent = 'Error loading configuration. Ensure extensions.json exists on the main branch.';
-                console.error(error);
+                document.getElementById("loading").style.display = "none";
+                const grid = document.getElementById("grid");
+                extensions.forEach((ext, i) => grid.appendChild(renderCard(ext, i)));
+                document.getElementById("footer").style.display = "block";
+            } catch (err) {
+                document.getElementById("loading").textContent =
+                    "⚠️ Failed to load extensions config. Make sure config/extensions.json exists on the main branch.";
+                console.error(err);
             }
         }
 
         loadDashboard();
     </script>
+
 </body>
 
 </html>
