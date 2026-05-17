@@ -1,6 +1,6 @@
 # extension-tracker
 
-[English](README.md) | [繁體中文](docs/README.zh-TW.md) | [简体中文](docs/README.zh-CN.md) | [日本語](docs/README.ja.md)
+[English](README.md) | [繁體中文](docs/README.zh-TW.md) | [简体中文](docs/README.zh-CN.md) | [日本語](docs/README.ja.md) | [한국어](docs/README.ko.md) | [Español](docs/README.es.md)
 
 Daily public marketplace analytics for extensions.
 
@@ -117,6 +117,23 @@ output/
 ```
 
 There is no `latest.md` and no aggregate `snapshots.jsonl`. If you track 1000 products, each product/platform series remains isolated and can be inspected, regenerated, or repaired independently.
+
+### How to Embed Charts (GitHub Pages)
+
+To prevent Git repository bloat, SVG charts are **not** committed to the `main` branch. Instead, GitHub Actions automatically deploys the generated charts to a dedicated `gh-pages` branch.
+
+To display your charts:
+
+1. Ensure your repository is **Public**.
+2. Go to **Settings > Pages**.
+3. Under **Build and deployment**, select **Deploy from a branch**.
+4. Choose the **`gh-pages`** branch and `/ (root)`, then click **Save**.
+
+Once enabled, you can embed your auto-updating charts in any markdown file using standard image syntax:
+
+```markdown
+![Marketplace Trend](https://<your-username>.github.io/<your-repo>/<product-key>-marketplace.svg)
+```
 
 ## Workflows
 
