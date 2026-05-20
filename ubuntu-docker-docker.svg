@@ -11,10 +11,11 @@
   <path d="M96.0,90.3 L886.0,90.2" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
   <circle cx="96.0" cy="90.3" r="3.2" fill="#ef3b20"/>
   <circle cx="886.0" cy="90.2" r="3.2" fill="#ef3b20"/>
-  <text x="806.0" y="80.2" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#ef3b20">9,886,125,737</text>
+  <text x="806.0" y="80.2" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#ef3b20">9,887,290,806</text>
   <text x="96.0" y="484" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">May 17</text>
-  <text x="491.0" y="484" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">May 18</text>
-  <text x="886.0" y="484" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">May 19</text>
+  <text x="359.3" y="484" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">May 18</text>
+  <text x="622.7" y="484" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">May 19</text>
+  <text x="886.0" y="484" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#111827">May 20</text>
   <text x="491" y="532" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#111827">Date</text>
   <text transform="translate(28 271) rotate(-90)" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#111827">Pulls</text>
   
