@@ -17,8 +17,10 @@ interface SeriesScale {
 
 const WIDTH = 960;
 const HEIGHT = 560;
+const TITLE_Y = 38;
+const LEGEND_Y = 76;
 // Narrowed right margin (from 886 to 856) to make room for dual right-axis labels
-const PLOT = { x: 96, y: 86, width: 760, height: 370 };
+const PLOT = { x: 96, y: 112, width: 760, height: 344 };
 
 export function chartFileName(extensionId: string, platform: Platform): string {
   return `${sanitizeFileName(extensionId)}-${platform}.svg`;
@@ -81,7 +83,7 @@ function buildScale(s: Series): SeriesScale {
 }
 
 // ── Main render ─────────────────────────────────────────────────────────────
-function renderPlatformChart(
+export function renderPlatformChart(
   extensionId: string,
   platform: Platform,
   snapshots: Snapshot[],
@@ -175,7 +177,7 @@ function renderPlatformChart(
     </style>
   </defs>
   <rect width="${WIDTH}" height="${HEIGHT}" fill="#fdfaf6"/>
-  <text x="${WIDTH / 2}" y="44" text-anchor="middle" font-size="26" font-weight="700" fill="#2c2a29">${escapeXml(title)}</text>
+  <text x="${WIDTH / 2}" y="${TITLE_Y}" text-anchor="middle" font-size="26" font-weight="700" fill="#2c2a29">${escapeXml(title)}</text>
   ${renderLegend(series, isDualAxis)}
   ${gridSvg}
   <path d="${axisPath}" fill="none" stroke="#2c2a29" stroke-width="2.5" stroke-linecap="round"/>
@@ -313,14 +315,18 @@ function renderSeries(
 
 // ── Legend ──────────────────────────────────────────────────────────────────
 function renderLegend(series: Series[], isDualAxis: boolean): string {
-  const startX = PLOT.x + 8;
+  const itemWidth = 185;
+  const itemGap = 15;
+  const legendWidth = series.length * itemWidth + Math.max(0, series.length - 1) * itemGap;
+  const startX = (WIDTH - legendWidth) / 2;
+
   return series
     .map((item, index) => {
-      const x = startX + index * 200;
+      const x = startX + index * (itemWidth + itemGap);
       const axisNote = isDualAxis ? (index === 0 ? " (left)" : " (right)") : "";
       return (
-        `<g transform="translate(${x},64)">` +
-        `<rect x="0" y="-15" width="185" height="30" rx="3" fill="#fdfaf6" stroke="#2c2a29" stroke-width="1.5"/>` +
+        `<g transform="translate(${x},${LEGEND_Y})">` +
+        `<rect x="0" y="-15" width="${itemWidth}" height="30" rx="3" fill="#fdfaf6" stroke="#2c2a29" stroke-width="1.5"/>` +
         `<line x1="10" y1="0" x2="32" y2="0" stroke="${item.color}" stroke-width="3.5" stroke-linecap="round"/>` +
         `<text x="40" y="6" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="700" fill="#2c2a29">${escapeXml(item.label + axisNote)}</text>` +
         `</g>`
