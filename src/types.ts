@@ -16,6 +16,7 @@ export interface ExtensionConfig {
 
 export interface SourceConfig {
   key: string;
+  displayName?: string;
   platform: Platform;
   url: string;
   marketplaceId?: string;

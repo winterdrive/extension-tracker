@@ -65,7 +65,7 @@ async function collectTask(task: SourceConfig, snapshotDate: string, fetchedAt: 
       await appendJsonl(filePath, [snapshot]);
     }
 
-    await writePlatformChart(task.key, task.platform, snapshots);
+    await writePlatformChart(task.key, task.platform, snapshots, task.displayName);
 
     console.log(`[collectTask] Completed task: ${task.key} on platform ${task.platform} (written: ${!alreadyExists}, skipped: ${alreadyExists})`);
 
@@ -79,7 +79,7 @@ async function collectTask(task: SourceConfig, snapshotDate: string, fetchedAt: 
   } catch (error) {
     console.error(`[collectTask] Failed task: ${task.key} on platform ${task.platform}. Error:`, error);
     if (existingSnapshots.length > 0) {
-      await writePlatformChart(task.key, task.platform, existingSnapshots);
+      await writePlatformChart(task.key, task.platform, existingSnapshots, task.displayName);
     }
 
     return {

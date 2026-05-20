@@ -38,7 +38,9 @@ function isExtensionConfig(value: unknown): value is ExtensionConfig {
 }
 
 export function resolveSources(extensions: ExtensionConfig[]): SourceConfig[] {
-  return extensions.flatMap((extension) => extension.urls.map((url) => parseSourceUrl(extension.key, url)));
+  return extensions.flatMap((extension) =>
+    extension.urls.map((url) => ({ ...parseSourceUrl(extension.key, url), displayName: extension.displayName }))
+  );
 }
 
 function parseSourceUrl(key: string, rawUrl: string): SourceConfig {

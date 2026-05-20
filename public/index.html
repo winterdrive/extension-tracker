@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Extension Tracker — Embed Charts</title>
     <meta name="description" content="Embed live SVG marketplace analytics charts for your extensions into any README or website.">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Hand-drawn fonts: Caveat for general text, Kalam for headers/accents -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0d1117;
-            --surface: rgba(22, 27, 34, 0.9);
-            --surface-hover: rgba(33, 38, 45, 0.95);
-            --border: rgba(48, 54, 61, 0.9);
-            --border-glow: rgba(88, 166, 255, 0.4);
-            --text: #e6edf3;
-            --text-muted: #7d8590;
-            --accent: #58a6ff;
-            --accent-2: #bc8cff;
-            --success: #3fb950;
-            --tag-bg: rgba(56, 139, 253, 0.1);
-            --tag-border: rgba(56, 139, 253, 0.4);
-            --copy-bg: rgba(63, 185, 80, 0.1);
-            --copy-border: rgba(63, 185, 80, 0.4);
+            /* Hand-drawn light paper theme */
+            --bg: #fdfaf6;
+            --surface: #ffffff;
+            --border: #2c2a29;
+            --text: #2c2a29;
+            --text-muted: #5c5a59;
+            --accent: #d84315;
+            --accent-hover: #bf360c;
+            --success: #2e7d32;
+            --highlight: rgba(255, 235, 59, 0.4);
+            
+            /* Hand-drawn border radius */
+            --rough-radius: 2px 255px 3px 225px / 255px 5px 225px 3px;
+            --rough-radius-alt: 255px 15px 225px 15px / 15px 225px 15px 255px;
         }
 
         * {
@@ -33,18 +32,22 @@
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--bg);
+            font-family: 'Caveat', cursive;
+            background-color: var(--bg);
+            /* Notebook paper effect */
+            background-image: 
+                linear-gradient(rgba(44, 42, 41, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(44, 42, 41, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
             color: var(--text);
             min-height: 100vh;
-            background-image:
-                radial-gradient(ellipse at 20% 0%, rgba(88, 166, 255, 0.07) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 100%, rgba(188, 140, 255, 0.07) 0%, transparent 60%);
+            font-size: 1.25rem; /* Larger base font for hand-drawn style */
         }
 
         /* ── Header ── */
         header {
-            border-bottom: 1px solid var(--border);
+            border-bottom: 2px solid var(--border);
+            border-radius: 0 0 15px 255px / 0 0 225px 15px;
             padding: 1.5rem 2rem;
             display: flex;
             align-items: center;
@@ -53,8 +56,8 @@
             gap: 1rem;
             position: sticky;
             top: 0;
-            background: rgba(13, 17, 23, 0.85);
-            backdrop-filter: blur(12px);
+            background: rgba(253, 250, 246, 0.95);
+            backdrop-filter: blur(5px);
             z-index: 100;
         }
 
@@ -66,24 +69,21 @@
         }
 
         .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
+            font-size: 1.8rem;
         }
 
         .logo-text {
-            font-size: 1.1rem;
+            font-family: 'Kalam', cursive;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--text);
+            transform: rotate(-2deg);
         }
 
         .logo-text span {
             color: var(--accent);
+            display: inline-block;
+            transform: translateY(2px) rotate(1deg);
         }
 
         .header-right {
@@ -97,151 +97,323 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-muted);
+            border: 2px solid var(--border);
+            border-radius: var(--rough-radius);
+            color: var(--text);
             text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 600;
+            font-family: 'Kalam', cursive;
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: var(--surface);
+            box-shadow: 2px 2px 0px var(--border);
             transition: all 0.2s;
+            cursor: pointer;
         }
 
         .github-btn:hover {
-            border-color: var(--accent);
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px var(--border);
+            background: #fff3e0;
             color: var(--accent);
-            background: var(--tag-bg);
         }
+
+        .github-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px var(--border);
+        }
+
+        /* ── Demo banner ── */
+        .demo-banner {
+            background: #fff8e1;
+            border-bottom: 2px dashed var(--border);
+            padding: 0.75rem 2rem;
+            text-align: center;
+            font-family: 'Caveat', cursive;
+            font-size: 1.2rem;
+            color: #5c5a59;
+        }
+        .demo-banner strong {
+            color: var(--accent);
+            font-family: 'Kalam', cursive;
+        }
+        .demo-banner a {
+            color: var(--accent);
+            font-weight: 700;
+            border-bottom: 2px dashed var(--accent);
+            text-decoration: none;
+        }
+        .demo-banner a:hover { background: var(--highlight); }
 
         /* ── Hero ── */
         .hero {
             text-align: center;
             padding: 5rem 2rem 3rem;
-            max-width: 700px;
+            max-width: 860px;
             margin: 0 auto;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            background: var(--tag-bg);
-            border: 1px solid var(--tag-border);
-            border-radius: 100px;
-            padding: 0.3rem 0.9rem;
-            font-size: 0.8rem;
+            gap: 0.5rem;
+            background: transparent;
+            border: 2px dashed var(--border);
+            border-radius: var(--rough-radius-alt);
+            padding: 0.4rem 1.2rem;
+            font-size: 1.2rem;
             color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-family: 'Kalam', cursive;
+            margin-bottom: 2rem;
+            transform: rotate(-1deg);
         }
 
         h1 {
-            font-size: 3rem;
+            font-family: 'Kalam', cursive;
+            font-size: 3.5rem;
             font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--text) 40%, var(--accent-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: var(--highlight);
+            z-index: -1;
+            transform: rotate(-1deg);
+            border-radius: 10px;
         }
 
         .hero-sub {
-            font-size: 1.1rem;
+            font-size: 1.6rem;
             color: var(--text-muted);
-            font-weight: 300;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.4;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.8rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Kalam', cursive;
+            border-radius: var(--rough-radius);
+            border: 3px solid var(--border);
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 4px 4px 0px var(--border);
+        }
+        .btn-primary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--border);
+            background: var(--accent-hover);
+        }
+        .btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px var(--border);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.8rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Kalam', cursive;
+            border-radius: var(--rough-radius);
+            border: 3px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 4px 4px 0px var(--border);
+        }
+        .btn-secondary:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--border);
+            background: #fff3e0;
+            color: var(--accent);
+        }
+        .btn-secondary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px var(--border);
         }
 
         /* ── How to use bar ── */
         .howto {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 2.5rem;
             flex-wrap: wrap;
-            padding: 1.5rem 2rem;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            background: rgba(22, 27, 34, 0.5);
-            margin-bottom: 3rem;
+            padding: 2rem;
+            border-top: 2px solid var(--border);
+            border-bottom: 2px solid var(--border);
+            background: rgba(255, 255, 255, 0.7);
+            margin-bottom: 4rem;
+            border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
         }
 
         .howto-step {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
+            gap: 0.8rem;
+            font-size: 1.4rem;
+            color: var(--text);
+            font-weight: 700;
         }
 
         .step-num {
-            width: 22px;
-            height: 22px;
-            background: var(--tag-bg);
-            border: 1px solid var(--tag-border);
-            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            background: #fff;
+            border: 2px solid var(--border);
+            border-radius: var(--rough-radius);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.7rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-family: 'Kalam', cursive;
             color: var(--accent);
-            flex-shrink: 0;
+            box-shadow: 2px 2px 0 var(--border);
+            transform: rotate(3deg);
         }
 
         /* ── Grid ── */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem 4rem;
+            padding: 0 2rem 5rem;
         }
 
         #loading {
             text-align: center;
             padding: 5rem;
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* ── Section heading ── */
+        .section-heading {
+            text-align: center;
+            font-family: 'Kalam', cursive;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+        }
+        .section-heading::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--highlight);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
         }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
-            gap: 1.5rem;
+            gap: 2.5rem;
         }
 
         /* ── Card ── */
         .card {
             background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            border: 3px solid var(--border);
+            border-radius: var(--rough-radius);
+            /* overflow:hidden removed — let the 📌 pin overflow above the card */
+            overflow: visible;
+            transition: all 0.2s;
             animation: fadeIn 0.5s ease backwards;
+            box-shadow: 6px 6px 0px var(--border);
+            position: relative;
+        }
+        
+        /* Clip only the inner content, not the pin */
+        .card-inner {
+            border-radius: var(--rough-radius);
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "📌";
+            position: absolute;
+            top: -18px;        /* fully above card top edge */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.6rem;
+            z-index: 10;
+            filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.2));
         }
 
         .card:hover {
-            border-color: rgba(88, 166, 255, 0.3);
-            box-shadow: 0 0 0 1px rgba(88, 166, 255, 0.1), 0 8px 32px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px) rotate(-1deg);
+            box-shadow: 10px 10px 0px var(--border);
         }
 
         .card-head {
-            padding: 1.25rem 1.5rem;
+            padding: 1.5rem 1.8rem;
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
             gap: 1rem;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 2px dashed var(--border);
+            background: rgba(255, 243, 224, 0.3); /* very light orange */
         }
 
-        .card-info {}
-
         .card-name {
-            font-size: 1.05rem;
+            font-family: 'Kalam', cursive;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--text);
+            line-height: 1.2;
         }
 
         .card-key {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
+            font-family: 'Caveat', cursive;
+            font-size: 1.2rem;
             color: var(--text-muted);
             margin-top: 0.2rem;
         }
@@ -250,29 +422,34 @@
             display: flex;
             gap: 0.5rem;
             flex-shrink: 0;
+            align-items: center;
+            margin-top: 0.5rem;
         }
 
         .pill-link {
-            font-size: 0.78rem;
-            font-weight: 600;
-            padding: 0.3rem 0.65rem;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            color: var(--text-muted);
+            font-family: 'Kalam', cursive;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 0.2rem 0.8rem;
+            border-radius: var(--rough-radius-alt);
+            border: 2px solid var(--border);
+            color: var(--text);
             text-decoration: none;
             transition: all 0.2s;
+            background: var(--surface);
+            box-shadow: 2px 2px 0 var(--border);
         }
 
         .pill-link:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: var(--tag-bg);
+            background: var(--highlight);
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0 var(--border);
         }
 
         /* ── Platform section ── */
         .platform-section {
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 1.8rem;
+            border-bottom: 2px dashed var(--border);
         }
 
         .platform-section:last-child {
@@ -283,124 +460,150 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .platform-name {
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--text-muted);
+            font-family: 'Kalam', cursive;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.6rem;
+            position: relative;
         }
 
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--success);
-            display: inline-block;
-        }
-
-        .status-dot.pending {
-            background: var(--text-muted);
+        /* Sketchy underline for platform name */
+        .platform-name::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--highlight);
+            z-index: -1;
+            border-radius: 4px;
+            transform: rotate(-1deg);
         }
 
         /* ── Chart preview ── */
         .chart-preview {
-            background: rgba(0, 0, 0, 0.25);
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: var(--rough-radius);
             overflow: hidden;
-            min-height: 100px;
+            min-height: 150px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
         }
 
         .chart-preview img {
             width: 100%;
             height: auto;
             display: block;
+            /* Filter to give SVG a slightly printed/sketchy look if needed, 
+               but we will handle rough SVG generation in backend */
+            filter: contrast(1.05) saturate(1.1);
         }
 
         .chart-placeholder {
-            padding: 2rem;
+            padding: 3rem;
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 1.4rem;
+            font-family: 'Caveat', cursive;
         }
 
         /* ── Copy toolbar ── */
         .copy-toolbar {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .copy-btn {
             display: flex;
             align-items: center;
             gap: 0.4rem;
-            padding: 0.4rem 0.8rem;
-            font-size: 0.78rem;
-            font-weight: 600;
-            font-family: 'Outfit', sans-serif;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: 'Kalam', cursive;
+            border-radius: var(--rough-radius);
+            border: 2px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
             cursor: pointer;
             transition: all 0.2s;
             white-space: nowrap;
+            box-shadow: 2px 2px 0px var(--border);
         }
 
         .copy-btn:hover {
-            background: var(--tag-bg);
-            border-color: var(--accent);
+            background: #fff3e0;
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px var(--border);
             color: var(--accent);
+        }
+        
+        .copy-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px var(--border);
         }
 
         .copy-btn.copied {
-            background: var(--copy-bg);
-            border-color: var(--copy-border);
+            background: #e8f5e9;
             color: var(--success);
+            border-color: var(--success);
+            box-shadow: 2px 2px 0px var(--success);
         }
 
         .copy-btn svg {
-            width: 13px;
-            height: 13px;
+            width: 18px;
+            height: 18px;
             flex-shrink: 0;
+            /* Rough looking stroke for icons */
+            stroke-width: 2.5;
         }
 
         /* ── Footer ── */
         footer {
-            border-top: 1px solid var(--border);
-            padding: 1.5rem 2rem;
+            border-top: 2px solid var(--border);
+            border-radius: 255px 15px 0 0 / 15px 225px 0 0;
+            padding: 2.5rem 2rem;
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 1.4rem;
+            background: rgba(255, 255, 255, 0.5);
         }
 
         footer a {
             color: var(--accent);
             text-decoration: none;
+            font-weight: 700;
+            border-bottom: 2px dashed var(--accent);
+        }
+        
+        footer a:hover {
+            background: var(--highlight);
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(12px);
+                transform: translateY(20px) rotate(2deg);
             }
-
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) rotate(0);
             }
         }
 
@@ -410,7 +613,7 @@
             }
 
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             header {
@@ -420,11 +623,163 @@
             .container {
                 padding: 0 1rem 3rem;
             }
+            
+            .card {
+                padding: 0;
+            }
+        }
+
+        /* ── Lightbox Modal ── */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 42, 41, 0.45);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        .lightbox-content {
+            position: relative;
+            background: var(--bg);
+            border: 3px solid var(--border);
+            border-radius: var(--rough-radius);
+            width: 90%;
+            max-width: 1100px;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 10px 10px 0 var(--border);
+            overflow: hidden;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1001;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.9) rotate(-1deg); opacity: 0; }
+            to { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .lightbox-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            border-bottom: 2px dashed var(--border);
+            background: var(--surface);
+        }
+
+        .lightbox-title {
+            font-family: 'Kalam', cursive, sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .lightbox-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .lightbox-btn {
+            font-family: 'Caveat', cursive, sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: var(--rough-radius);
+            padding: 0.4rem 0.8rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+            box-shadow: 2px 2px 0 var(--border);
+        }
+
+        .lightbox-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0 var(--border);
+            background: var(--primary-light);
+        }
+
+        .lightbox-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0 var(--border);
+        }
+
+        .lightbox-btn.close-btn {
+            background: #fee2e2;
+        }
+        .lightbox-btn.close-btn:hover {
+            background: #fecaca;
+        }
+
+        .zoom-display {
+            font-family: 'Kalam', cursive, sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            min-width: 60px;
+            text-align: center;
+            color: var(--text);
+        }
+
+        .lightbox-body {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fdfdfd;
+            position: relative;
+            user-select: none;
+        }
+
+        .lightbox-body img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            transition: transform 0.1s ease-out;
+            transform-origin: center center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-radius: 4px;
+        }
+        
+        .chart-preview img {
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+        
+        .chart-preview img:hover {
+            transform: scale(1.015);
         }
     </style>
 </head>
 
 <body>
+
+    <!-- Demo notice banner -->
+    <div class="demo-banner" id="demo-banner">
+        📋 This page shows the <strong>demo repo's</strong> tracked extensions.
+        <strong>Want to track your own?</strong>
+        <a id="fork-banner-link" href="#" target="_blank" rel="noopener noreferrer">Fork this repo ↗</a>
+        and edit <code>config/extensions.json</code>.
+    </div>
 
     <header>
         <a class="logo" href="#">
@@ -433,42 +788,63 @@
         </a>
         <div class="header-right">
             <a id="repo-link" href="#" target="_blank" rel="noopener noreferrer" class="github-btn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
                 View on GitHub
+            </a>
+            <a id="fork-btn" href="#" target="_blank" rel="noopener noreferrer" class="github-btn" style="background:#fff3e0; color:var(--accent); border-color:var(--accent);">
+                🍴 Fork &amp; Self-host
             </a>
         </div>
     </header>
 
     <div class="hero">
         <div class="hero-badge">
-            <span>✨</span> Auto-updated daily via GitHub Actions
+            <span>⚙️</span> GitHub Actions · Zero infra · Free
         </div>
-        <h1>Embed Live Extension Charts</h1>
-        <p class="hero-sub">Pick any chart below and copy the Markdown, URL, or HTML snippet to embed it anywhere — README, docs, or your website.</p>
+        <h1>Track Your Extensions,<br>Automatically</h1>
+        <p class="hero-sub">
+            Fork this repo, add your extensions to <code style="font-family:'Caveat',cursive; font-size:1.5rem; background:var(--highlight); padding:0.1em 0.4em; border-radius:4px;">config/extensions.json</code>,
+            and GitHub Actions will collect daily stats &amp; generate embeddable SVG trend charts — no server needed.
+        </p>
+        <div class="hero-actions">
+            <a id="fork-hero-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                🍴 Fork to Get Started
+            </a>
+            <a id="readme-hero-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                📖 Read the Docs
+            </a>
+        </div>
     </div>
 
     <div class="howto">
         <div class="howto-step">
             <span class="step-num">1</span>
-            Find your extension's chart below
+            Fork this repo
         </div>
         <div class="howto-step">
             <span class="step-num">2</span>
-            Choose a platform (Marketplace / Open VSX)
+            Edit <code style="font-family:'Caveat',cursive">config/extensions.json</code>
         </div>
         <div class="howto-step">
             <span class="step-num">3</span>
-            Click a copy button to get your embed snippet
+            Enable GitHub Actions
+        </div>
+        <div class="howto-step">
+            <span class="step-num">4</span>
+            Embed your live charts!
         </div>
     </div>
 
     <div class="container">
-        <div id="loading">⏳ Fetching tracked extensions…</div>
+        <div class="section-heading">📌 Demo — Currently Tracked Extensions</div>
+        <div id="loading">⏳ Fetching tracked extensions...</div>
         <div id="grid" class="grid"></div>
     </div>
 
     <footer id="footer" style="display:none;">
-        Charts auto-updated daily by <a id="footer-link" href="#" target="_blank">GitHub Actions</a>.
+        Charts auto-updated daily by <a id="footer-link" href="#" target="_blank">GitHub Actions</a>.<br>
         Fork <a id="fork-link" href="#" target="_blank">this repository</a> to track your own extensions.
     </footer>
 
@@ -483,13 +859,22 @@
             if (parts.length > 0) repo = parts[0];
         }
 
+        const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:";
+
         const pagesBase = `https://${username}.github.io/${repo}`;
         const rawBase = `https://raw.githubusercontent.com/${username}/${repo}/main`;
         const repoUrl = `https://github.com/${username}/${repo}`;
 
+        const forkUrl = `${repoUrl}/fork`;
+        const readmeUrl = `${repoUrl}#readme`;
+
         document.getElementById("repo-link").href = repoUrl;
         document.getElementById("footer-link").href = `${repoUrl}/actions`;
-        document.getElementById("fork-link").href = repoUrl;
+        document.getElementById("fork-link").href = forkUrl;
+        document.getElementById("fork-btn").href = forkUrl;
+        document.getElementById("fork-hero-btn").href = forkUrl;
+        document.getElementById("fork-banner-link").href = forkUrl;
+        document.getElementById("readme-hero-btn").href = readmeUrl;
 
         // ── Platform config ─────────────────────────────────────────────
         const PLATFORMS = [
@@ -526,8 +911,8 @@
         }
 
         // ── SVG icons ───────────────────────────────────────────────────
-        const iconCopy = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
-        const iconCheck = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+        const iconCopy = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>`;
+        const iconCheck = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
         const iconLink = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`;
 
         // ── Copy helper ─────────────────────────────────────────────────
@@ -546,20 +931,25 @@
         // ── Build embed snippets ─────────────────────────────────────────
         function snippets(key, platformId, altText) {
             const svgUrl = `${pagesBase}/${key}-${platformId}.svg`;
+            let previewUrl = svgUrl;
+            if (isLocal) {
+                if (window.location.pathname.includes("/public/")) {
+                    previewUrl = `../output/charts/${key}-${platformId}.svg`;
+                } else {
+                    previewUrl = `./${key}-${platformId}.svg`;
+                }
+            } else {
+                previewUrl = `./${key}-${platformId}.svg`;
+            }
             return {
                 url: svgUrl,
+                previewUrl: previewUrl,
                 markdown: `![${altText}](${svgUrl})`,
                 html: `<img src="${svgUrl}" alt="${altText}" />`,
             };
         }
 
         // ── Render card ──────────────────────────────────────────────────
-
-        /**
-         * Escape a JS value for safe embedding inside an HTML attribute.
-         * JSON.stringify produces a double-quoted string; those inner quotes
-         * must become &quot; so the HTML parser doesn't end the attribute early.
-         */
         function escAttr(value) {
             return JSON.stringify(value).replace(/"/g, "&quot;");
         }
@@ -567,15 +957,17 @@
         function renderCard(ext, index) {
             const card = document.createElement("div");
             card.className = "card";
-            card.style.animationDelay = `${index * 0.07}s`;
+            card.style.animationDelay = `${index * 0.05}s`;
+            // Random slight rotation for cards to look hand-placed
+            const rot = (Math.random() * 2 - 1).toFixed(2);
+            card.style.transform = `rotate(${rot}deg)`;
 
             const displayName = ext.displayName || ext.key;
             let linksHtml = "";
             if (ext.repository) {
-                linksHtml += `<a href="${ext.repository}" target="_blank" rel="noopener noreferrer" class="pill-link">GitHub</a>`;
+                linksHtml += `<a href="${ext.repository}" target="_blank" rel="noopener noreferrer" class="pill-link">🔗 GitHub</a>`;
             }
 
-            // Dynamically identify platforms specified for this extension
             const trackedPlatformIds = (ext.urls || []).map(getPlatformFromUrl).filter(Boolean);
             const activePlatforms = PLATFORMS.filter(p => trackedPlatformIds.includes(p.id));
 
@@ -589,44 +981,47 @@
                     <div class="platform-section">
                         <div class="platform-label">
                             <span class="platform-name">
-                                <span class="status-dot pending" id="dot-${imgId}"></span>
-                                ${platform.label}
+                                📈 ${platform.label}
                             </span>
                         </div>
                         <div class="chart-preview" id="preview-${imgId}">
                             <img
                                 id="${imgId}"
-                                src="${s.url}"
+                                src="${s.previewUrl}"
                                 alt="${altText}"
-                                onload="document.getElementById('dot-${imgId}').classList.remove('pending'); document.getElementById('preview-${imgId}').style.minHeight='auto';"
+                                data-title="${displayName} · ${platform.label}"
+                                onclick="openLightbox(this.src, this.getAttribute('data-title'))"
+                                onload="document.getElementById('preview-${imgId}').style.minHeight='auto';"
                                 onerror="
-                                    document.getElementById('preview-${imgId}').innerHTML='<div class=\\'chart-placeholder\\'>No data collected yet for this platform.</div>';
+                                    document.getElementById('preview-${imgId}').innerHTML='<div class=\\'chart-placeholder\\'>✏️ No data yet...</div>';
                                 "
                             />
                         </div>
                         <div class="copy-toolbar">
                             <button class="copy-btn" onclick="copyToClipboard(${escAttr(s.markdown)}, this)">
-                                ${iconCopy} Copy Markdown
+                                ${iconCopy} Markdown
                             </button>
                             <button class="copy-btn" onclick="copyToClipboard(${escAttr(s.url)}, this)">
-                                ${iconLink} Copy URL
+                                ${iconLink} URL
                             </button>
                             <button class="copy-btn" onclick="copyToClipboard(${escAttr(s.html)}, this)">
-                                ${iconCopy} Copy HTML
+                                ${iconCopy} HTML
                             </button>
                         </div>
                     </div>`;
             }
 
             card.innerHTML = `
-                <div class="card-head">
-                    <div class="card-info">
-                        <div class="card-name">${displayName}</div>
-                        <div class="card-key">${ext.key}</div>
+                <div class="card-inner">
+                    <div class="card-head">
+                        <div class="card-info">
+                            <div class="card-name">${displayName}</div>
+                            <div class="card-key">ID: ${ext.key}</div>
+                        </div>
+                        <div class="card-links">${linksHtml}</div>
                     </div>
-                    <div class="card-links">${linksHtml}</div>
+                    ${platformsHtml}
                 </div>
-                ${platformsHtml}
             `;
             return card;
         }
@@ -634,7 +1029,20 @@
         // ── Load ─────────────────────────────────────────────────────────
         async function loadDashboard() {
             try {
-                const res = await fetch(`${rawBase}/config/extensions.json`);
+                let res;
+                if (isLocal) {
+                    try {
+                        const localPath = window.location.pathname.includes("/public/")
+                            ? "../config/extensions.json"
+                            : "./extensions.json";
+                        res = await fetch(localPath);
+                    } catch (e) {
+                        console.warn("Local extensions.json not found, falling back to remote URL...", e);
+                    }
+                }
+                if (!res || !res.ok) {
+                    res = await fetch(`${rawBase}/config/extensions.json`);
+                }
                 if (!res.ok) throw new Error("Failed to fetch config");
                 const extensions = await res.json();
 
@@ -644,14 +1052,122 @@
                 document.getElementById("footer").style.display = "block";
             } catch (err) {
                 document.getElementById("loading").textContent =
-                    "⚠️ Failed to load extensions config. Make sure config/extensions.json exists on the main branch.";
+                    "Oops! 📝 Failed to load config.json...";
                 console.error(err);
             }
         }
 
+        // ── Lightbox Modal States ───────────────────────────────────────
+        let zoomLevel = 1.0;
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let translateX = 0;
+        let translateY = 0;
+
+        function openLightbox(src, title) {
+            const modal = document.getElementById("lightbox");
+            const img = document.getElementById("lightbox-img");
+            const titleSpan = document.getElementById("lightbox-title");
+
+            titleSpan.textContent = title;
+            img.src = src;
+            
+            // Reset transforms
+            zoomLevel = 1.0;
+            translateX = 0;
+            translateY = 0;
+            updateImgTransform();
+            updateZoomDisplay();
+
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden"; // Prevent scrolling main page
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById("lightbox");
+            modal.style.display = "none";
+            document.body.style.overflow = ""; // Restore scrolling
+        }
+
+        function zoomChart(delta) {
+            zoomLevel = Math.max(0.4, Math.min(4.0, zoomLevel + delta));
+            updateImgTransform();
+            updateZoomDisplay();
+        }
+
+        function resetZoom() {
+            zoomLevel = 1.0;
+            translateX = 0;
+            translateY = 0;
+            updateImgTransform();
+            updateZoomDisplay();
+        }
+
+        function updateZoomDisplay() {
+            document.getElementById("zoom-level").textContent = `${Math.round(zoomLevel * 100)}%`;
+        }
+
+        function updateImgTransform() {
+            const img = document.getElementById("lightbox-img");
+            img.style.transform = `scale(${zoomLevel}) translate(${translateX / zoomLevel}px, ${translateY / zoomLevel}px)`;
+            img.style.cursor = isDragging ? "grabbing" : (zoomLevel > 1.05 ? "grab" : "default");
+        }
+
+        // ── Pan/Drag Logic ──────────────────────────────────────────────
+        function startDrag(e) {
+            // Only drag if zoomed in
+            if (zoomLevel <= 1.0) return;
+            isDragging = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            updateImgTransform();
+
+            document.addEventListener("mousemove", drag);
+            document.addEventListener("mouseup", endDrag);
+            e.preventDefault();
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            updateImgTransform();
+        }
+
+        function endDrag() {
+            isDragging = false;
+            updateImgTransform();
+            document.removeEventListener("mousemove", drag);
+            document.removeEventListener("mouseup", endDrag);
+        }
+
+        // Close on Escape key
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closeLightbox();
+        });
+
         loadDashboard();
     </script>
 
+    <!-- ── Lightbox Modal HTML ── -->
+    <div id="lightbox" class="lightbox-modal">
+        <div class="lightbox-overlay" onclick="closeLightbox()"></div>
+        <div class="lightbox-content">
+            <div class="lightbox-header">
+                <span id="lightbox-title" class="lightbox-title">Chart Preview</span>
+                <div class="lightbox-controls">
+                    <button class="lightbox-btn" onclick="zoomChart(-0.25)" title="Zoom Out">➖</button>
+                    <span id="zoom-level" class="zoom-display">100%</span>
+                    <button class="lightbox-btn" onclick="zoomChart(0.25)" title="Zoom In">➕</button>
+                    <button class="lightbox-btn" onclick="resetZoom()" title="Reset Zoom">🔄</button>
+                    <button class="lightbox-btn close-btn" onclick="closeLightbox()" title="Close">❌</button>
+                </div>
+            </div>
+            <div class="lightbox-body" id="lightbox-body" onmousedown="startDrag(event)">
+                <img id="lightbox-img" src="" alt="Chart Preview" style="transform: scale(1) translate(0px, 0px); cursor: default;" />
+            </div>
+        </div>
+    </div>
 </body>
-
 </html>
