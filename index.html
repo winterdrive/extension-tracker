@@ -623,9 +623,52 @@
             .container {
                 padding: 0 1rem 3rem;
             }
-            
+
             .card {
                 padding: 0;
+            }
+
+            /* Lightbox mobile fixes */
+            .lightbox-content {
+                width: 98%;
+                height: auto;
+                max-height: 92dvh;
+                box-shadow: 4px 4px 0 var(--border);
+            }
+
+            .lightbox-header {
+                padding: 0.6rem 0.8rem;
+                flex-wrap: wrap;
+                gap: 0.3rem;
+            }
+
+            .lightbox-title {
+                font-size: 1.1rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+                min-width: 0;
+                flex: 1;
+            }
+
+            .lightbox-controls {
+                gap: 0.3rem;
+                flex-shrink: 0;
+            }
+
+            .lightbox-btn {
+                padding: 0.3rem 0.5rem;
+                font-size: 1rem;
+            }
+
+            .zoom-display {
+                min-width: 40px;
+                font-size: 1rem;
+            }
+
+            .lightbox-body {
+                min-height: 200px;
             }
         }
 
@@ -660,7 +703,8 @@
             border-radius: var(--rough-radius);
             width: 90%;
             max-width: 1100px;
-            height: 80%;
+            height: 80dvh;
+            max-height: 90dvh;
             display: flex;
             flex-direction: column;
             box-shadow: 10px 10px 0 var(--border);
@@ -1142,9 +1186,43 @@
             document.removeEventListener("mouseup", endDrag);
         }
 
+        // ── Touch Pan/Drag Logic ────────────────────────────────────────
+        function startTouchDrag(e) {
+            if (zoomLevel <= 1.0) return;
+            if (e.touches.length !== 1) return;
+            isDragging = true;
+            startX = e.touches[0].clientX - translateX;
+            startY = e.touches[0].clientY - translateY;
+            updateImgTransform();
+            e.preventDefault();
+        }
+
+        function touchDrag(e) {
+            if (!isDragging || e.touches.length !== 1) return;
+            translateX = e.touches[0].clientX - startX;
+            translateY = e.touches[0].clientY - startY;
+            updateImgTransform();
+            e.preventDefault();
+        }
+
+        function endTouchDrag() {
+            isDragging = false;
+            updateImgTransform();
+        }
+
         // Close on Escape key
         document.addEventListener("keydown", (e) => {
             if (e.key === "Escape") closeLightbox();
+        });
+
+        // Attach touch listeners to lightbox body after DOM is ready
+        document.addEventListener("DOMContentLoaded", () => {
+            const body = document.getElementById("lightbox-body");
+            if (body) {
+                body.addEventListener("touchstart", startTouchDrag, { passive: false });
+                body.addEventListener("touchmove", touchDrag, { passive: false });
+                body.addEventListener("touchend", endTouchDrag);
+            }
         });
 
         loadDashboard();
