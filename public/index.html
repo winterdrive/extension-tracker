@@ -628,48 +628,6 @@
                 padding: 0;
             }
 
-            /* Lightbox mobile fixes */
-            .lightbox-content {
-                width: 98%;
-                height: auto;
-                max-height: 92dvh;
-                box-shadow: 4px 4px 0 var(--border);
-            }
-
-            .lightbox-header {
-                padding: 0.6rem 0.8rem;
-                flex-wrap: wrap;
-                gap: 0.3rem;
-            }
-
-            .lightbox-title {
-                font-size: 1.1rem;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 100%;
-                min-width: 0;
-                flex: 1;
-            }
-
-            .lightbox-controls {
-                gap: 0.3rem;
-                flex-shrink: 0;
-            }
-
-            .lightbox-btn {
-                padding: 0.3rem 0.5rem;
-                font-size: 1rem;
-            }
-
-            .zoom-display {
-                min-width: 40px;
-                font-size: 1rem;
-            }
-
-            .lightbox-body {
-                min-height: 200px;
-            }
         }
 
         /* ── Lightbox Modal ── */
@@ -811,6 +769,50 @@
         
         .chart-preview img:hover {
             transform: scale(1.015);
+        }
+
+        @media (max-width: 600px) {
+            .lightbox-content {
+                width: 98%;
+                height: auto;
+                max-height: 92dvh;
+                box-shadow: 4px 4px 0 var(--border);
+            }
+
+            .lightbox-header {
+                padding: 0.6rem 0.8rem;
+                flex-wrap: wrap;
+                gap: 0.3rem;
+            }
+
+            .lightbox-title {
+                font-size: 1.1rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+                min-width: 0;
+                flex: 1;
+            }
+
+            .lightbox-controls {
+                gap: 0.3rem;
+                flex-shrink: 0;
+            }
+
+            .lightbox-btn {
+                padding: 0.3rem 0.5rem;
+                font-size: 1rem;
+            }
+
+            .zoom-display {
+                min-width: 40px;
+                font-size: 1rem;
+            }
+
+            .lightbox-body {
+                min-height: 200px;
+            }
         }
     </style>
 </head>
