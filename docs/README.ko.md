@@ -38,6 +38,8 @@
 
    > **참고:** 데이터 수집은 이 첫 번째 실행부터 시작됩니다. 최초 수집 이전 날짜에 대한 소급 수집은 지원되지 않습니다.
 
+> **업스트림 동기화:** 향후 이 리포지토리에서 업데이트를 가져올 때, `config/extensions.json`은 `.gitattributes`로 보호됩니다——Git이 자동으로 포크 버전을 유지하며 업스트림의 데모 설정으로 덮어쓰지 않습니다.
+
 ## 구성 (Configuration)
 
 [config/extensions.json](../config/extensions.json)의 각 항목은 하나의 제품을 설명합니다. 안정적인 `key`와 추적할 공개 마켓플레이스 URL만 제공하면 됩니다.

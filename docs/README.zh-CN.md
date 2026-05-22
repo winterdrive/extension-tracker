@@ -38,6 +38,8 @@
 
    > **注意：** 数据收集从首次执行起算，不会回补执行前的历史数据。
 
+> **与上游同步：** 日后拉取上游更新时，`config/extensions.json` 已受 `.gitattributes` 保护——Git 会自动保留您 fork 的版本，不会被上游的示范配置覆盖。
+
 ## 配置
 
 [config/extensions.json](../config/extensions.json) 中的每个条目描述了一个产品。您只需提供一组稳定的 `key` 及要追踪的公开市场 URL 即可。

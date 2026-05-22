@@ -1,0 +1,2 @@
+# When fork users merge upstream changes, always keep their own config.
+config/extensions.json merge=ours

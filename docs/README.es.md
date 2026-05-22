@@ -38,6 +38,8 @@ Rastreador analítico diario del mercado público para extensiones.
 
    > **Nota:** La recopilación de datos comienza desde esta primera ejecución. No se realiza relleno retroactivo de fechas anteriores a la recopilación inicial.
 
+> **Sincronización con upstream:** Al obtener futuras actualizaciones de este repositorio, `config/extensions.json` está protegido por `.gitattributes` — Git siempre mantendrá la versión de tu fork y nunca la sobreescribirá con las entradas de demostración del upstream.
+
 ## Configuración
 
 Cada entrada en [config/extensions.json](../config/extensions.json) describe un producto. Solo necesitas proporcionar una `key` estable y las URL del mercado público a rastrear.

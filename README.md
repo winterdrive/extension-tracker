@@ -38,6 +38,8 @@ Daily public marketplace analytics for extensions.
 
    > **Note:** Data collection starts from this first run. There is no backfill for dates before your initial collection.
 
+> **Syncing with upstream:** When you pull future updates from this repository, `config/extensions.json` is protected by `.gitattributes` — Git will always keep your fork's version and never overwrite it with the upstream demo entries.
+
 ## Configuration
 
 Each entry in [config/extensions.json](config/extensions.json) describes one product. You only provide a stable `key` and the public marketplace URLs to track.
