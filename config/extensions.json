@@ -25,45 +25,5 @@
       "https://marketplace.visualstudio.com/items?itemName=Pain-Labs.edo-tensei",
       "https://open-vsx.org/extension/Pain-Labs/edo-tensei"
     ]
-  },
-  {
-    "key": "ublock-origin-firefox",
-    "displayName": "uBlock Origin (Firefox)",
-    "repository": "https://github.com/gorhill/uBlock",
-    "urls": [
-      "https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/"
-    ]
-  },
-  {
-    "key": "ideavim-jetbrains",
-    "displayName": "IdeaVim (JetBrains)",
-    "repository": "https://github.com/JetBrains/ideavim",
-    "urls": [
-      "https://plugins.jetbrains.com/plugin/164-ideavim"
-    ]
-  },
-  {
-    "key": "typescript-npm",
-    "displayName": "TypeScript (npm)",
-    "repository": "https://github.com/microsoft/TypeScript",
-    "urls": [
-      "https://www.npmjs.com/package/typescript"
-    ]
-  },
-  {
-    "key": "ubuntu-docker",
-    "displayName": "Ubuntu (Docker)",
-    "repository": "https://github.com/tianon/docker-brew-ubuntu-core",
-    "urls": [
-      "https://hub.docker.com/_/ubuntu"
-    ]
-  },
-  {
-    "key": "ripgrep-github",
-    "displayName": "ripgrep (GitHub Releases)",
-    "repository": "https://github.com/BurntSushi/ripgrep",
-    "urls": [
-      "https://github.com/BurntSushi/ripgrep"
-    ]
   }
 ]
