@@ -1,5 +1,23 @@
 [
   {
+    "key": "winterdrive.virtual-tabs",
+    "displayName": "VirtualTabs",
+    "repository": "https://github.com/winterdrive/vscode-virtual-tabs",
+    "urls": [
+      "https://marketplace.visualstudio.com/items?itemName=winterdrive.virtual-tabs",
+      "https://open-vsx.org/extension/winterdrive/virtual-tabs"
+    ]
+  },
+  {
+    "key": "winterdrive.quick-prompt",
+    "displayName": "Quick Prompt",
+    "repository": "https://github.com/winterdrive/vscode-quick-prompt",
+    "urls": [
+      "https://marketplace.visualstudio.com/items?itemName=winterdrive.quick-prompt",
+      "https://open-vsx.org/extension/winterdrive/quick-prompt"
+    ]
+  },
+  {
     "key": "Pain-Labs.edo-tensei",
     "displayName": "Edo Tensei",
     "repository": "https://github.com/Pain-Labs/Edo-Tensei",
