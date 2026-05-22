@@ -8,21 +8,35 @@
 
 ## 快速開始
 
-1. Fork 本儲存庫。
+1. Fork 本儲存庫。接著將儲存庫描述與網站 URL 更新為指向您自己的 GitHub Pages：
+
+   ![Fork 後更新儲存庫網站 URL](assets/02_url_rename.png)
+
 2. 編輯 [config/extensions.json](../config/extensions.json) 填入您的產品名稱與市場 URL。
+
+   ![在 GitHub 上編輯 config/extensions.json](assets/03_edit_config_list.png)
+
 3. 在本地端執行檢查：
 
-```bash
-npm install
-npm run build
-npm test
-npm run collect
-npm run query -- latest
-```
+   ```bash
+   npm install
+   npm run build
+   npm test
+   npm run collect
+   npm run query -- latest
+   ```
 
-1. 提交您的設定檔與產生的 `output/` 基準數據。
-2. 在您的 Fork 中啟用 GitHub Actions。
-3. 從 Actions 頁籤手動執行一次供應商的工作流 (Workflows)，之後排程便會自動每日執行。
+4. 提交您的設定檔與產生的 `output/` 基準數據。
+
+5. 在您的 Fork 中啟用 GitHub Actions。
+
+   ![在 Fork 中啟用 GitHub Actions](assets/04_enbale_workflow.png)
+
+6. 從 Actions 頁籤手動執行一次供應商的工作流 (Workflows)，之後排程便會自動每日執行。
+
+   ![從 Actions 頁籤手動執行工作流](assets/05_run_workflow.png)
+
+   > **注意：** 資料收集從首次執行起算，不會回補執行前的歷史數據。
 
 ## 設定
 
@@ -78,11 +92,16 @@ npm run query -- latest
 
 ## 追蹤的產品 (Tracked Products)
 
+> 以下項目為**示範用途**——每個支援的平台各舉一例。Fork 本儲存庫後，請替換為您自己的產品以開始追蹤。
+
 | 產品鍵值 (Product key) | 儲存庫 (Repository) |
 |---|---|
-| `winterdrive.virtual-tabs` | <https://github.com/winterdrive/vscode-virtual-tabs> |
-| `winterdrive.quick-prompt` | <https://github.com/winterdrive/vscode-quick-prompt> |
 | `Pain-Labs.edo-tensei` | <https://github.com/Pain-Labs/Edo-Tensei> |
+| `ublock-origin-firefox` | <https://github.com/gorhill/uBlock> |
+| `ideavim-jetbrains` | <https://github.com/JetBrains/ideavim> |
+| `typescript-npm` | <https://github.com/microsoft/TypeScript> |
+| `ubuntu-docker` | <https://hub.docker.com/_/ubuntu> |
+| `ripgrep-github` | <https://github.com/BurntSushi/ripgrep> |
 
 ## 指令 (Commands)
 
@@ -147,6 +166,8 @@ output/
 2. 前往儲存庫的 **Settings > Pages**。
 3. 在 **Build and deployment** 下，將 Source 設為 **Deploy from a branch**。
 4. Branch 選擇 **`gh-pages`** 與 `/ (root)`，然後點擊 **Save**。
+
+   ![GitHub Pages 分支設定](assets/01_github_page.png)
 
 啟用完成後，您就可以在任何 Markdown 檔案中，使用以下語法嵌入會每日自動更新的趨勢圖：
 

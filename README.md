@@ -8,21 +8,35 @@ Daily public marketplace analytics for extensions.
 
 ## Quick Start
 
-1. Fork this repository.
+1. Fork this repository. Then update the repository description and website URL to point to your own GitHub Pages:
+
+   ![Update repository website URL after forking](docs/assets/02_url_rename.png)
+
 2. Edit [config/extensions.json](config/extensions.json) with your products and marketplace URLs.
+
+   ![Edit config/extensions.json on GitHub](docs/assets/03_edit_config_list.png)
+
 3. Run a local check:
 
-```bash
-npm install
-npm run build
-npm test
-npm run collect
-npm run query -- latest
-```
+   ```bash
+   npm install
+   npm run build
+   npm test
+   npm run collect
+   npm run query -- latest
+   ```
 
-1. Commit your config plus the generated `output/` baseline.
-2. Enable GitHub Actions in your fork.
-3. Run the provider workflows manually once from the Actions tab, then let the schedules continue daily.
+4. Commit your config plus the generated `output/` baseline.
+
+5. Enable GitHub Actions in your fork.
+
+   ![Enable GitHub Actions in your fork](docs/assets/04_enbale_workflow.png)
+
+6. Run the provider workflows manually once from the Actions tab, then let the schedules continue daily.
+
+   ![Run workflow manually from the Actions tab](docs/assets/05_run_workflow.png)
+
+   > **Note:** Data collection starts from this first run. There is no backfill for dates before your initial collection.
 
 ## Configuration
 
@@ -75,11 +89,16 @@ These platforms will be reconsidered if they expose a public stats API in the fu
 
 ## Tracked Products
 
+> The entries below are **demonstration examples** — one product per supported provider. Fork this repository and replace them with your own products to start tracking.
+
 | Product key | Repository |
 |---|---|
-| `winterdrive.virtual-tabs` | <https://github.com/winterdrive/vscode-virtual-tabs> |
-| `winterdrive.quick-prompt` | <https://github.com/winterdrive/vscode-quick-prompt> |
 | `Pain-Labs.edo-tensei` | <https://github.com/Pain-Labs/Edo-Tensei> |
+| `ublock-origin-firefox` | <https://github.com/gorhill/uBlock> |
+| `ideavim-jetbrains` | <https://github.com/JetBrains/ideavim> |
+| `typescript-npm` | <https://github.com/microsoft/TypeScript> |
+| `ubuntu-docker` | <https://hub.docker.com/_/ubuntu> |
+| `ripgrep-github` | <https://github.com/BurntSushi/ripgrep> |
 
 ## Commands
 
@@ -125,6 +144,8 @@ To display your charts:
 2. Go to **Settings > Pages**.
 3. Under **Build and deployment**, select **Deploy from a branch**.
 4. Choose the **`gh-pages`** branch and `/ (root)`, then click **Save**.
+
+   ![GitHub Pages branch configuration](docs/assets/01_github_page.png)
 
 Once enabled, you can embed your auto-updating charts in any markdown file using standard image syntax:
 

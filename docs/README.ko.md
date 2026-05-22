@@ -8,21 +8,35 @@
 
 ## 빠른 시작 (Quick Start)
 
-1. 이 리포지토리를 포크합니다.
+1. 이 리포지토리를 포크합니다. 그런 다음 리포지토리 설명과 웹사이트 URL을 자신의 GitHub Pages로 업데이트합니다:
+
+   ![포크 후 리포지토리 웹사이트 URL 업데이트](assets/02_url_rename.png)
+
 2. [config/extensions.json](../config/extensions.json)을 편집하여 제품과 마켓플레이스 URL을 지정합니다.
+
+   ![GitHub에서 config/extensions.json 편집](assets/03_edit_config_list.png)
+
 3. 로컬에서 확인 작업을 실행합니다:
 
-```bash
-npm install
-npm run build
-npm test
-npm run collect
-npm run query -- latest
-```
+   ```bash
+   npm install
+   npm run build
+   npm test
+   npm run collect
+   npm run query -- latest
+   ```
 
-1. 구성 파일과 생성된 `output/` 기준 데이터를 커밋합니다.
-2. 포크한 리포지토리에서 GitHub Actions를 활성화합니다.
-3. Actions 탭에서 제공자 워크플로우를 수동으로 한 번 실행하면 이후부터는 예약된 일정에 따라 매일 실행됩니다.
+4. 구성 파일과 생성된 `output/` 기준 데이터를 커밋합니다.
+
+5. 포크한 리포지토리에서 GitHub Actions를 활성화합니다.
+
+   ![포크에서 GitHub Actions 활성화](assets/04_enbale_workflow.png)
+
+6. Actions 탭에서 제공자 워크플로우를 수동으로 한 번 실행하면 이후부터는 예약된 일정에 따라 매일 실행됩니다.
+
+   ![Actions 탭에서 워크플로우 수동 실행](assets/05_run_workflow.png)
+
+   > **참고:** 데이터 수집은 이 첫 번째 실행부터 시작됩니다. 최초 수집 이전 날짜에 대한 소급 수집은 지원되지 않습니다.
 
 ## 구성 (Configuration)
 
@@ -78,11 +92,16 @@ URL 기반 구성 방식을 사용하면 다른 생태계로 추적을 확장하
 
 ## 추적되는 제품 (Tracked Products)
 
+> 아래 항목은 **데모 예시**입니다 — 지원되는 각 제공자별로 하나씩 예시 제품을 보여줍니다. 이 리포지토리를 포크한 후 자신의 제품으로 교체하여 추적을 시작하세요.
+
 | 제품 키 (Product key) | 리포지토리 (Repository) |
 |---|---|
-| `winterdrive.virtual-tabs` | <https://github.com/winterdrive/vscode-virtual-tabs> |
-| `winterdrive.quick-prompt` | <https://github.com/winterdrive/vscode-quick-prompt> |
 | `Pain-Labs.edo-tensei` | <https://github.com/Pain-Labs/Edo-Tensei> |
+| `ublock-origin-firefox` | <https://github.com/gorhill/uBlock> |
+| `ideavim-jetbrains` | <https://github.com/JetBrains/ideavim> |
+| `typescript-npm` | <https://github.com/microsoft/TypeScript> |
+| `ubuntu-docker` | <https://hub.docker.com/_/ubuntu> |
+| `ripgrep-github` | <https://github.com/BurntSushi/ripgrep> |
 
 ## 명령어 (Commands)
 
@@ -102,7 +121,7 @@ npm 기 query -- export snapshots.csv
 
 `npm run collect`는 구성 파일에서 지원되는 모든 제공자 URL을 수집합니다. 제공자 전용 워크플로우는 플랫폼 인수를 사용하여 각 데이터 소스가 독립적으로 실패하거나 재시도되거나 확장될 수 있도록 합니다.
 
-## 스케일링 및 아키텍처 (Scaling & Architecture)
+## 출력 파일 (Outputs)
 
 생성된 모든 파일은 `output/` 디렉토리 아래에 저장됩니다:
 
@@ -128,6 +147,8 @@ Git 리포지토리가 비대해지는 것을 방지하기 위해 생성된 SVG 
 2. **Settings > Pages** 로 이동합니다.
 3. **Build and deployment** 아래에서 Source를 **Deploy from a branch** 로 선택합니다.
 4. Branch로 **`gh-pages`** 와 `/ (root)` 를 선택한 다음 **Save** 를 클릭합니다.
+
+   ![GitHub Pages 브랜치 설정](assets/01_github_page.png)
 
 활성화되면 다음 표준 이미지 마크다운 구문을 사용하여 매일 자동 업데이트되는 차트를 어디에나 삽입할 수 있습니다:
 

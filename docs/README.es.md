@@ -8,21 +8,35 @@ Rastreador analítico diario del mercado público para extensiones.
 
 ## Inicio rápido
 
-1. Haz un fork de este repositorio.
+1. Haz un fork de este repositorio. Luego actualiza la descripción del repositorio y la URL del sitio web para que apunten a tu propio GitHub Pages:
+
+   ![Actualizar la URL del sitio web del repositorio tras el fork](assets/02_url_rename.png)
+
 2. Edita [config/extensions.json](../config/extensions.json) con tus productos y las URL del mercado.
+
+   ![Editar config/extensions.json en GitHub](assets/03_edit_config_list.png)
+
 3. Ejecuta una comprobación local:
 
-```bash
-npm install
-npm run build
-npm test
-npm run collect
-npm run query -- latest
-```
+   ```bash
+   npm install
+   npm run build
+   npm test
+   npm run collect
+   npm run query -- latest
+   ```
 
-1. Confirma (commit) tu configuración junto con los datos base generados en `output/`.
-2. Habilita GitHub Actions en tu fork.
-3. Ejecuta los flujos de trabajo de los proveedores manualmente una vez desde la pestaña Actions; luego, dejarán de ejecutarse según el horario programado.
+4. Confirma (commit) tu configuración junto con los datos base generados en `output/`.
+
+5. Habilita GitHub Actions en tu fork.
+
+   ![Habilitar GitHub Actions en tu fork](assets/04_enbale_workflow.png)
+
+6. Ejecuta los flujos de trabajo de los proveedores manualmente una vez desde la pestaña Actions; luego, los horarios programados continuarán ejecutándose diariamente.
+
+   ![Ejecutar el flujo de trabajo manualmente desde la pestaña Actions](assets/05_run_workflow.png)
+
+   > **Nota:** La recopilación de datos comienza desde esta primera ejecución. No se realiza relleno retroactivo de fechas anteriores a la recopilación inicial.
 
 ## Configuración
 
@@ -76,13 +90,18 @@ La configuración basada en URL hace que sea trivial expandir el seguimiento a o
 - **Docker Hub** (Descargas de imágenes de contenedores)
 - **GitHub Releases** (Recuentos de descargas para binarios precompilados)
 
-## Productos rastreadados (Tracked Products)
+## Productos rastreados (Tracked Products)
+
+> Las entradas a continuación son **ejemplos de demostración** — un producto por cada proveedor compatible. Haz un fork de este repositorio y reemplázalos con tus propios productos para comenzar a rastrear.
 
 | Clave de producto (Product key) | Repositorio (Repository) |
 |---|---|
-| `winterdrive.virtual-tabs` | <https://github.com/winterdrive/vscode-virtual-tabs> |
-| `winterdrive.quick-prompt` | <https://github.com/winterdrive/vscode-quick-prompt> |
 | `Pain-Labs.edo-tensei` | <https://github.com/Pain-Labs/Edo-Tensei> |
+| `ublock-origin-firefox` | <https://github.com/gorhill/uBlock> |
+| `ideavim-jetbrains` | <https://github.com/JetBrains/ideavim> |
+| `typescript-npm` | <https://github.com/microsoft/TypeScript> |
+| `ubuntu-docker` | <https://hub.docker.com/_/ubuntu> |
+| `ripgrep-github` | <https://github.com/BurntSushi/ripgrep> |
 
 ## Comandos (Commands)
 
@@ -102,7 +121,7 @@ npm run query -- export snapshots.csv
 
 `npm run collect` recopila las URL de cada proveedor compatible en la configuración. Los flujos de trabajo específicos del proveedor usan el argumento de plataforma para que cada fuente de datos pueda fallar, reintentar o escalar de forma independiente.
 
-## Escalabilidad y Arquitectura (Scaling & Architecture)
+## Archivos de salida (Outputs)
 
 Todos los archivos generados se encuentran bajo el directorio `output/`:
 
@@ -128,6 +147,8 @@ Para mostrar tus gráficos:
 2. Ve a **Settings > Pages**.
 3. En **Build and deployment**, selecciona **Deploy from a branch**.
 4. Elige la rama **`gh-pages`** y `/ (root)`, luego haz clic en **Save**.
+
+   ![Configuración de la rama en GitHub Pages](assets/01_github_page.png)
 
 Una vez habilitado, puedes incrustar tus gráficos (que se actualizan automáticamente todos los días) en cualquier archivo Markdown usando la sintaxis estándar para imágenes:
 
