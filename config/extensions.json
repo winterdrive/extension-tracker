@@ -25,5 +25,13 @@
       "https://marketplace.visualstudio.com/items?itemName=Pain-Labs.edo-tensei",
       "https://open-vsx.org/extension/Pain-Labs/edo-tensei"
     ]
+  },
+  {
+    "key": "winterdrive.migao",
+    "displayName": "Migao",
+    "repository": "https://github.com/winterdrive/migao",
+    "urls": [
+      "https://github.com/winterdrive/migao"
+    ]
   }
 ]
