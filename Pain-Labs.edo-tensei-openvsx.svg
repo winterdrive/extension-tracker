@@ -9,24 +9,24 @@
   <text x="480" y="38" text-anchor="middle" font-size="26" font-weight="700" fill="#2c2a29">Edo Tensei · Open VSX Registry</text>
   <g transform="translate(387.5,76)"><rect x="0" y="-15" width="185" height="30" rx="3" fill="#fdfaf6" stroke="#2c2a29" stroke-width="1.5"/><line x1="10" y1="0" x2="32" y2="0" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round"/><text x="40" y="6" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="700" fill="#2c2a29">downloads</text></g>
   <line x1="96" y1="455.0" x2="856" y2="455.6" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="461.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">1.4K</text>
-  <line x1="96" y1="371.0" x2="856" y2="370.2" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="375.1" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">1.8K</text>
-  <line x1="96" y1="284.0" x2="856" y2="284.7" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="288.9" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">2.2K</text>
-  <line x1="96" y1="197.4" x2="856" y2="198.7" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="202.9" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">2.6K</text>
+  <line x1="96" y1="371.0" x2="856" y2="370.1" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="375.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">1.8K</text>
+  <line x1="96" y1="284.1" x2="856" y2="284.8" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="289.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">2.2K</text>
+  <line x1="96" y1="197.4" x2="856" y2="198.8" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="203.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">2.6K</text>
   <line x1="96" y1="112.1" x2="856" y2="111.3" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="117.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">3K</text>
   <path d="M94.8,111.7 L94.7,456.8 L854.8,456.0" fill="none" stroke="#2c2a29" stroke-width="2.5" stroke-linecap="round"/>
   
-  <path d="M97.7,402.0 L125.5,405.5 L190.9,372.9 L220.3,349.0 L256.3,325.9 L318.6,297.4 L411.5,234.7 L537.6,202.7 L699.3,179.4 L853.7,142.2" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="96.0" cy="404.0" r="3.5" fill="#ef3b20"/>
-  <circle cx="127.7" cy="403.6" r="3.5" fill="#ef3b20"/>
-  <circle cx="191.0" cy="373.1" r="3.5" fill="#ef3b20"/>
-  <circle cx="222.7" cy="347.9" r="3.5" fill="#ef3b20"/>
-  <circle cx="254.3" cy="325.7" r="3.5" fill="#ef3b20"/>
-  <circle cx="317.7" cy="295.2" r="3.5" fill="#ef3b20"/>
-  <circle cx="412.7" cy="236.9" r="3.5" fill="#ef3b20"/>
-  <circle cx="539.3" cy="204.7" r="3.5" fill="#ef3b20"/>
-  <circle cx="697.7" cy="180.8" r="3.5" fill="#ef3b20"/>
-  <circle cx="856.0" cy="144.6" r="3.5" fill="#ef3b20"/>
-  <text x="776.0" y="134.6" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">2,850</text>
+  <path d="M97.7,401.4 L125.5,404.9 L190.9,372.4 L220.3,348.5 L256.3,325.5 L318.6,297.1 L411.5,234.4 L537.6,202.5 L699.3,179.3 L853.7,139.1" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="96.0" cy="403.4" r="3.5" fill="#ef3b20"/>
+  <circle cx="127.7" cy="403.0" r="3.5" fill="#ef3b20"/>
+  <circle cx="191.0" cy="372.6" r="3.5" fill="#ef3b20"/>
+  <circle cx="222.7" cy="347.4" r="3.5" fill="#ef3b20"/>
+  <circle cx="254.3" cy="325.3" r="3.5" fill="#ef3b20"/>
+  <circle cx="317.7" cy="294.9" r="3.5" fill="#ef3b20"/>
+  <circle cx="412.7" cy="236.7" r="3.5" fill="#ef3b20"/>
+  <circle cx="539.3" cy="204.5" r="3.5" fill="#ef3b20"/>
+  <circle cx="697.7" cy="180.6" r="3.5" fill="#ef3b20"/>
+  <circle cx="856.0" cy="141.5" r="3.5" fill="#ef3b20"/>
+  <text x="776.0" y="131.5" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">2,864</text>
   <text x="96.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 17</text>
   <text x="286.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 23</text>
   <text x="476.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 29</text>
