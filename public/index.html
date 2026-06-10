@@ -973,6 +973,112 @@
                 max-height: 98%;
             }
         }
+
+        /* ── Dark Mode ── */
+        [data-theme="dark"] {
+            --bg: #1c1917;
+            --surface: #252220;
+            --border: #bfbbb6;
+            --text: #f0ece6;
+            --text-muted: #a09a94;
+            --accent: #e8623a;
+            --accent-hover: #d44e28;
+            --success: #5cb85c;
+            --highlight: rgba(240, 180, 60, 0.15);
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg);
+            background-image:
+                linear-gradient(rgba(240, 236, 230, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(240, 236, 230, 0.035) 1px, transparent 1px);
+        }
+
+        [data-theme="dark"] header {
+            background: rgba(28, 25, 23, 0.96);
+        }
+
+        [data-theme="dark"] .demo-banner {
+            background: #1e1b15;
+            color: var(--text-muted);
+        }
+
+        [data-theme="dark"] .github-btn:hover {
+            background: #2c1f14;
+            color: var(--accent);
+        }
+
+        [data-theme="dark"] .howto {
+            background: rgba(37, 34, 32, 0.85);
+        }
+
+        [data-theme="dark"] .step-num {
+            background: var(--surface);
+        }
+
+        [data-theme="dark"] .card-head {
+            background: rgba(255, 160, 80, 0.05);
+        }
+
+        [data-theme="dark"] .btn-secondary:hover {
+            background: #2c1f14;
+            color: var(--accent);
+        }
+
+        [data-theme="dark"] .copy-btn:hover {
+            background: #2c1f14;
+            color: var(--accent);
+        }
+
+        [data-theme="dark"] .copy-btn.copied {
+            background: #162018;
+            color: var(--success);
+            border-color: var(--success);
+            box-shadow: 2px 2px 0px var(--success);
+        }
+
+        [data-theme="dark"] .lightbox-header {
+            background: var(--surface);
+        }
+
+        [data-theme="dark"] .lightbox-body {
+            background: #181614;
+        }
+
+        [data-theme="dark"] .lightbox-btn {
+            background: var(--bg);
+        }
+
+        [data-theme="dark"] .lightbox-btn:hover {
+            background: #2c1f14;
+        }
+
+        [data-theme="dark"] .lightbox-btn.close-btn {
+            background: #2e1818;
+        }
+
+        [data-theme="dark"] .lightbox-btn.close-btn:hover {
+            background: #3d2020;
+        }
+
+        [data-theme="dark"] footer {
+            background: rgba(37, 34, 32, 0.5);
+        }
+
+        [data-theme="dark"] .chart-preview img {
+            filter: brightness(0.92) contrast(1.05);
+        }
+
+        #theme-toggle {
+            font-size: 1.25rem;
+            line-height: 1;
+            padding: 0.4rem 0.65rem;
+            min-width: auto;
+        }
+
+        #theme-toggle:hover {
+            transform: translate(-1px, -1px) rotate(-12deg) !important;
+        }
     </style>
 </head>
 
@@ -992,6 +1098,7 @@
             <span class="logo-text">Extension<span>Tracker</span></span>
         </a>
         <div class="header-right">
+            <button id="theme-toggle" class="github-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
             <a id="repo-link" href="#" target="_blank" rel="noopener noreferrer" class="github-btn" aria-label="View on GitHub">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
@@ -1385,6 +1492,33 @@
                 body.addEventListener("touchmove", touchDrag, { passive: false });
                 body.addEventListener("touchend", endTouchDrag);
             }
+        });
+
+        // ── Dark Mode Toggle ────────────────────────────────────────────
+        const THEME_KEY = 'et-theme';
+
+        function applyTheme(dark) {
+            document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+            const btn = document.getElementById('theme-toggle');
+            if (btn) btn.textContent = dark ? '☀️' : '🌙';
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            localStorage.setItem(THEME_KEY, isDark ? 'light' : 'dark');
+            applyTheme(!isDark);
+        }
+
+        // Initialize theme before first paint
+        (function () {
+            const saved = localStorage.getItem(THEME_KEY);
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyTheme(saved ? saved === 'dark' : prefersDark);
+        })();
+
+        // Sync if system preference changes while page is open
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem(THEME_KEY)) applyTheme(e.matches);
         });
 
         loadDashboard();
