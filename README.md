@@ -38,7 +38,7 @@ Daily public marketplace analytics for extensions.
 
    > **Note:** Data collection starts from this first run. There is no backfill for dates before your initial collection.
 
-> **Syncing with upstream:** When you pull future updates from this repository, `config/extensions.json` is protected by `.gitattributes` — Git will always keep your fork's version and never overwrite it with the upstream demo entries.
+> **Syncing with upstream:** `config/extensions.json` is intentionally frozen in the upstream repository — Pain-Labs will never modify it, so future syncs will always be conflict-free. To pull upstream improvements, run `git fetch upstream && git merge upstream/main` locally. If the GitHub web UI "Sync fork" button shows a conflict, do **not** click "Discard commits" — use the local merge command instead, which correctly preserves your config.
 
 ## Configuration
 

@@ -38,7 +38,7 @@ Rastreador analítico diario del mercado público para extensiones.
 
    > **Nota:** La recopilación de datos comienza desde esta primera ejecución. No se realiza relleno retroactivo de fechas anteriores a la recopilación inicial.
 
-> **Sincronización con upstream:** Al obtener futuras actualizaciones de este repositorio, `config/extensions.json` está protegido por `.gitattributes` — Git siempre mantendrá la versión de tu fork y nunca la sobreescribirá con las entradas de demostración del upstream.
+> **Sincronización con upstream:** `config/extensions.json` está intencionalmente congelado en el repositorio upstream — Pain-Labs nunca lo modificará, por lo que las sincronizaciones futuras no tendrán conflictos. Para obtener mejoras del upstream, ejecuta `git fetch upstream && git merge upstream/main` localmente. Si el botón «Sync fork» de GitHub muestra un conflicto, no hagas clic en «Discard commits» — usa el comando de merge local, que preserva correctamente tu configuración.
 
 ## Configuración
 

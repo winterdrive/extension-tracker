@@ -38,7 +38,7 @@
 
    > **注意：** 数据收集从首次执行起算，不会回补执行前的历史数据。
 
-> **与上游同步：** 日后拉取上游更新时，`config/extensions.json` 已受 `.gitattributes` 保护——Git 会自动保留您 fork 的版本，不会被上游的示范配置覆盖。
+> **与上游同步：** `config/extensions.json` 在上游仓库中被刻意冻结——Pain-Labs 不会再修改此文件，因此未来的同步不会发生冲突。若要拉取上游改善，请在本地执行 `git fetch upstream && git merge upstream/main`。若 GitHub 网页版 Sync fork 显示冲突，请勿点击「Discard commits」，改用本地 merge 命令即可正确保留您的配置。
 
 ## 配置
 

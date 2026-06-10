@@ -1,0 +1,26 @@
+name: Protect upstream config
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-config:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: config/extensions.json must not be modified in upstream
+        if: github.repository == 'Pain-Labs/extension-tracker'
+        run: |
+          if git diff --name-only origin/main...HEAD | grep -q "^config/extensions.json$"; then
+            echo "❌ config/extensions.json is frozen in upstream."
+            echo ""
+            echo "This file is the personal config for each fork user."
+            echo "Pain-Labs upstream keeps it frozen so fork users can sync without conflicts."
+            echo "To track extensions, modify config/extensions.json in your own fork."
+            exit 1
+          fi
+          echo "✅ config/extensions.json not modified."

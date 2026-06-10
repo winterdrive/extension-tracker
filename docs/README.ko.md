@@ -38,7 +38,7 @@
 
    > **참고:** 데이터 수집은 이 첫 번째 실행부터 시작됩니다. 최초 수집 이전 날짜에 대한 소급 수집은 지원되지 않습니다.
 
-> **업스트림 동기화:** 향후 이 리포지토리에서 업데이트를 가져올 때, `config/extensions.json`은 `.gitattributes`로 보호됩니다——Git이 자동으로 포크 버전을 유지하며 업스트림의 데모 설정으로 덮어쓰지 않습니다.
+> **업스트림 동기화:** `config/extensions.json`은 업스트림 저장소에서 의도적으로 고정되어 있습니다——Pain-Labs는 이 파일을 더 이상 수정하지 않으므로 향후 동기화 시 충돌이 발생하지 않습니다. 업스트림 개선사항을 가져오려면 로컬에서 `git fetch upstream && git merge upstream/main`을 실행하세요. GitHub 웹 UI의 「Sync fork」에서 충돌이 표시되면 「Discard commits」를 클릭하지 말고 로컬 merge 명령을 사용하세요.
 
 ## 구성 (Configuration)
 

@@ -38,7 +38,7 @@
 
    > **注意：** データ収集はこの初回実行から開始されます。それ以前の日付への遡及取得は行われません。
 
-> **上流との同期：** 将来、上流の更新を取り込む際、`config/extensions.json` は `.gitattributes` によって保護されています——Git は自動的にあなたのフォーク版を保持し、上流のデモ設定で上書きされることはありません。
+> **上流との同期：** `config/extensions.json` は上流リポジトリで意図的に凍結されています——Pain-Labs はこのファイルを変更しないため、将来の同期で競合は発生しません。上流の改善を取り込むには、ローカルで `git fetch upstream && git merge upstream/main` を実行してください。GitHub ウェブ UI の「Sync fork」で競合が表示された場合、「Discard commits」はクリックせず、ローカルの merge コマンドを使用してください。
 
 ## 設定
 
