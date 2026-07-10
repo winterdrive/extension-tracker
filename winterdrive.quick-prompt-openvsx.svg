@@ -15,14 +15,14 @@
   <line x1="96" y1="112.1" x2="856" y2="111.3" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="117.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">7K</text>
   <path d="M94.8,111.7 L94.7,456.8 L854.8,456.0" fill="none" stroke="#2c2a29" stroke-width="2.5" stroke-linecap="round"/>
   
-  <path d="M97.7,401.2 L165.5,365.1 L210.7,335.7 L222.7,325.6 L255.8,301.7 L297.7,290.0 L324.2,277.5 L338.1,264.1 L355.7,259.2 L366.2,257.2 L397.7,255.7 L423.5,255.1 L438.9,246.3 L453.0,244.1 L470.3,241.6 L526.4,224.4 L538.3,220.4 L567.1,216.2 L627.0,197.5 L639.4,196.5 L741.8,169.0 L769.4,146.7 L782.0,148.3 L854.6,140.9" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="856.0" cy="139.7" r="5" fill="#ef3b20"/>
-  <text x="776.0" y="129.7" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">6,703</text>
+  <path d="M97.7,400.9 L164.2,364.8 L208.5,335.4 L220.3,325.4 L252.8,301.5 L294.0,289.8 L320.0,277.4 L333.6,264.0 L350.9,259.0 L361.1,257.0 L392.1,255.6 L417.4,254.9 L432.5,246.1 L446.3,244.0 L463.4,241.4 L518.5,224.3 L530.1,220.2 L558.4,216.0 L617.2,197.4 L629.3,196.4 L729.8,169.0 L756.9,146.6 L769.2,148.3 L854.6,138.8" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="856.0" cy="137.6" r="5" fill="#ef3b20"/>
+  <text x="776.0" y="127.6" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">6,725</text>
   <text x="96.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 17</text>
-  <text x="282.4" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 30</text>
-  <text x="483.2" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 13</text>
-  <text x="669.6" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 26</text>
-  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jul 9</text>
+  <text x="293.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 31</text>
+  <text x="476.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 13</text>
+  <text x="673.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 27</text>
+  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jul 10</text>
   <text x="476" y="546" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Date</text>
   <text transform="translate(22 284) rotate(-90)" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Downloads</text>
   
