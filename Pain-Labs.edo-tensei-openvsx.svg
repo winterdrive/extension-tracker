@@ -15,14 +15,14 @@
   <line x1="96" y1="112.1" x2="856" y2="111.3" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="117.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">6K</text>
   <path d="M94.8,111.7 L94.7,456.8 L854.8,456.0" fill="none" stroke="#2c2a29" stroke-width="2.5" stroke-linecap="round"/>
   
-  <path d="M97.7,399.3 L100.0,403.2 L114.6,391.6 L118.6,385.3 L129.2,377.6 L140.5,370.3 L157.1,348.0 L181.5,338.3 L215.9,331.6 L261.9,316.9 L271.0,316.6 L274.4,317.5 L294.1,307.3 L306.3,305.1 L346.7,290.2 L351.6,282.2 L367.9,279.6 L380.5,274.3 L407.9,262.0 L412.2,261.1 L420.4,258.7 L425.6,258.2 L436.3,260.4 L443.4,260.1 L487.7,258.4 L493.2,253.9 L514.3,254.8 L518.1,244.6 L536.2,217.1 L549.2,216.5 L558.2,212.6 L570.5,211.4 L575.1,214.4 L584.0,212.6 L588.5,211.5 L595.8,214.2 L606.7,212.2 L616.8,210.6 L631.6,210.8 L652.8,209.0 L664.9,207.3 L669.9,210.7 L701.7,163.3 L723.2,162.0 L737.9,143.0 L756.0,138.1 L770.9,140.2 L785.3,134.2 L822.5,135.9 L831.0,134.6 L839.3,134.4 L850.8,130.0 L856.6,130.1" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="856.0" cy="128.4" r="5" fill="#ef3b20"/>
-  <text x="776.0" y="118.4" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">5,754</text>
+  <path d="M97.7,399.3 L100.0,403.2 L114.5,391.6 L118.4,385.3 L128.9,377.6 L140.2,370.3 L156.6,348.0 L180.8,338.3 L215.0,331.6 L260.5,316.9 L269.5,316.6 L272.9,317.5 L292.5,307.3 L304.5,305.1 L344.7,290.2 L349.6,282.2 L365.7,279.6 L378.2,274.3 L405.4,262.0 L409.6,261.1 L417.8,258.7 L422.9,258.2 L433.5,260.4 L440.6,260.1 L484.5,258.4 L490.0,253.9 L510.9,254.8 L514.7,244.6 L532.6,217.1 L545.5,216.5 L554.5,212.6 L566.7,211.4 L571.2,214.4 L580.0,212.6 L584.5,211.5 L591.7,214.2 L602.6,212.2 L612.6,210.6 L627.3,210.8 L648.3,209.0 L660.3,207.3 L665.2,210.7 L696.8,163.3 L718.0,162.0 L732.7,143.0 L750.6,138.1 L765.5,140.2 L779.7,134.2 L816.5,135.9 L825.0,134.6 L833.3,134.4 L844.7,130.0 L856.6,129.8" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="856.0" cy="128.1" r="5" fill="#ef3b20"/>
+  <text x="776.0" y="118.1" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">5,758</text>
   <text x="96.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 17</text>
-  <text x="289.1" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 17</text>
-  <text x="476.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jul 17</text>
-  <text x="669.1" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Aug 17</text>
-  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Sep 16</text>
+  <text x="287.5" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 17</text>
+  <text x="479.1" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jul 18</text>
+  <text x="664.5" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Aug 17</text>
+  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Sep 17</text>
   <text x="476" y="546" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Date</text>
   <text transform="translate(22 284) rotate(-90)" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Downloads</text>
   
