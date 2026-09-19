@@ -15,14 +15,14 @@
   <line x1="96" y1="112.1" x2="856" y2="111.3" stroke="#2c2a29" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/><text x="86" y="117.0" text-anchor="end" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="600" fill="#2c2a29">6K</text>
   <path d="M94.8,111.7 L94.7,456.8 L854.8,456.0" fill="none" stroke="#2c2a29" stroke-width="2.5" stroke-linecap="round"/>
   
-  <path d="M97.7,399.2 L99.9,403.0 L114.3,391.5 L118.2,385.2 L128.7,377.5 L139.8,370.2 L156.1,347.9 L180.1,338.2 L214.0,331.6 L259.2,316.9 L268.1,316.5 L271.5,317.4 L290.9,307.3 L302.8,305.0 L342.7,290.1 L347.5,282.1 L363.5,279.6 L375.9,274.2 L402.9,262.0 L407.1,261.0 L415.2,258.7 L420.2,258.1 L430.8,260.4 L437.8,260.0 L481.3,258.4 L486.8,253.9 L507.5,254.8 L511.3,244.6 L529.0,217.1 L541.9,216.4 L550.8,212.6 L562.9,211.4 L567.4,214.3 L576.1,212.5 L580.6,211.4 L587.8,214.1 L598.5,212.1 L608.4,210.6 L623.0,210.7 L643.9,209.0 L655.8,207.2 L660.6,210.7 L691.9,163.2 L713.0,162.0 L727.5,143.0 L745.3,138.1 L760.1,140.1 L774.1,134.2 L810.7,135.8 L819.1,134.6 L827.4,134.4 L838.6,130.0 L850.5,129.8 L856.1,128.2" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="856.0" cy="127.7" r="5" fill="#ef3b20"/>
-  <text x="776.0" y="117.7" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">5,764</text>
+  <path d="M97.7,399.2 L99.9,403.0 L114.2,391.5 L118.0,385.2 L128.4,377.5 L139.5,370.2 L155.6,347.9 L179.4,338.2 L213.1,331.6 L257.9,316.9 L266.8,316.5 L270.1,317.4 L289.3,307.3 L301.2,305.0 L340.7,290.1 L345.5,282.1 L361.3,279.6 L373.6,274.2 L400.4,262.0 L404.6,261.0 L412.7,258.7 L417.6,258.1 L428.1,260.4 L435.0,260.0 L478.3,258.4 L483.7,253.9 L504.2,254.8 L507.9,244.6 L525.5,217.1 L538.3,216.4 L547.2,212.6 L559.2,211.4 L563.6,214.3 L572.3,212.5 L576.7,211.4 L583.8,214.1 L594.5,212.1 L604.3,210.6 L618.8,210.7 L639.5,209.0 L651.3,207.2 L656.1,210.7 L687.2,163.2 L708.1,162.0 L722.5,143.0 L740.1,138.1 L754.8,140.1 L768.7,134.2 L805.0,135.8 L813.3,134.6 L821.5,134.4 L832.7,130.0 L844.4,129.8 L856.1,127.9" fill="none" stroke="#ef3b20" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="856.0" cy="127.5" r="5" fill="#ef3b20"/>
+  <text x="776.0" y="117.5" font-family="'Caveat', cursive, sans-serif" font-size="16" font-weight="700" fill="#ef3b20">5,768</text>
   <text x="96.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">May 17</text>
-  <text x="286.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 17</text>
-  <text x="476.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jul 18</text>
-  <text x="666.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Aug 18</text>
-  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Sep 18</text>
+  <text x="284.5" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jun 17</text>
+  <text x="479.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Jul 19</text>
+  <text x="667.5" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Aug 19</text>
+  <text x="856.0" y="482" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="15" font-weight="600" fill="#2c2a29">Sep 19</text>
   <text x="476" y="546" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Date</text>
   <text transform="translate(22 284) rotate(-90)" text-anchor="middle" font-family="'Caveat', cursive, sans-serif" font-size="17" font-weight="600" fill="#5c5a59">Downloads</text>
   
